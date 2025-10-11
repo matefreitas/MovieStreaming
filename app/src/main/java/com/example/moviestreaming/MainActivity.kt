@@ -10,6 +10,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.moviestreaming.ui.theme.MovieStreamingTheme
 
@@ -19,7 +20,11 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             MovieStreamingTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
+                Scaffold(
+                    modifier = Modifier
+                        .fillMaxSize(),
+                    containerColor = MovieStreamingTheme.colorScheme.backgroundColor
+                ) { innerPadding ->
                     Greeting(
                         name = "Android",
                         modifier = Modifier.padding(innerPadding)
@@ -34,7 +39,10 @@ class MainActivity : ComponentActivity() {
 fun Greeting(name: String, modifier: Modifier = Modifier) {
     Text(
         text = "Hello $name!",
-        modifier = modifier
+        modifier = modifier,
+        style = TextStyle(
+            color = MovieStreamingTheme.colorScheme.textColor
+        )
     )
 }
 
