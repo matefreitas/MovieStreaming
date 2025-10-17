@@ -12,6 +12,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
+import com.example.moviestreaming.presenter.splash.SplashScreen
 import com.example.moviestreaming.ui.theme.MovieStreamingTheme
 
 class MainActivity : ComponentActivity() {
@@ -20,36 +21,8 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             MovieStreamingTheme {
-                Scaffold(
-                    modifier = Modifier
-                        .fillMaxSize(),
-                    containerColor = MovieStreamingTheme.colorScheme.backgroundColor
-                ) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
-                }
+                SplashScreen()
             }
         }
-    }
-}
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier,
-        style = TextStyle(
-            color = MovieStreamingTheme.colorScheme.textColor
-        )
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    MovieStreamingTheme {
-        Greeting("Android")
     }
 }
