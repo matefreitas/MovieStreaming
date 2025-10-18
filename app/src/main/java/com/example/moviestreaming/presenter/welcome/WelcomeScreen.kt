@@ -19,7 +19,7 @@ fun WelcomeScreen() {
 }
 
 @Composable
-fun WelcomeContent(modifier: Modifier = Modifier) {
+fun WelcomeContent() {
     Box(
         modifier = Modifier
             .fillMaxSize()
