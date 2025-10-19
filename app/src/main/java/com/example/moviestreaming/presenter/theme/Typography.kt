@@ -1,4 +1,4 @@
-package com.example.moviestreaming.ui.theme
+package com.example.moviestreaming.presenter.theme
 
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily

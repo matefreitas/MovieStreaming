@@ -1,4 +1,4 @@
-package com.example.moviestreaming.ui.theme
+package com.example.moviestreaming.presenter.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
