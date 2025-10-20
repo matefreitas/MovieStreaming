@@ -4,6 +4,7 @@ import androidx.compose.ui.graphics.Color
 
 data class MyColorScheme(
     val defaultColor: Color,
+    val disabledDefaultButtonColor: Color,
     val backgroundColor: Color,
     val textColor: Color,
     val secondaryButtonColor: Color,

@@ -3,8 +3,10 @@ package com.example.moviestreaming.presenter.screens.welcome
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.pager.rememberPagerState
@@ -17,6 +19,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.moviestreaming.R
+import com.example.moviestreaming.presenter.components.button.PrimaryButton
 import com.example.moviestreaming.presenter.components.indicator.SliderIndicator
 import com.example.moviestreaming.presenter.components.slider.WelcomeSliderUI
 import com.example.moviestreaming.presenter.theme.MovieStreamingTheme
@@ -45,14 +48,14 @@ fun WelcomeContent() {
     val pagerState = rememberPagerState {
         slideItems.size
     }
-    Scaffold (
-        content = {paddingValues ->
+    Scaffold(
+        content = { paddingValues ->
             Box(
                 modifier = Modifier
                     .fillMaxSize()
                     .padding(bottom = paddingValues.calculateBottomPadding())
                     .background(MovieStreamingTheme.colorScheme.backgroundColor)
-            ){
+            ) {
                 Image(
                     painter = painterResource(R.drawable.placeholder_welcome),
                     contentDescription = null,
@@ -66,10 +69,24 @@ fun WelcomeContent() {
                         .align(Alignment.BottomCenter)
                 )
 
-                WelcomeSliderUI(
-                    slideItems = slideItems,
-                    pagerState = pagerState
-                )
+                Column(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                ) {
+                    WelcomeSliderUI(
+                        modifier = Modifier.weight(1f),
+                        slideItems = slideItems,
+                        pagerState = pagerState
+                    )
+
+                    PrimaryButton(
+                        modifier = Modifier.padding(start = 24.dp, end = 24.dp, bottom = 24.dp),
+                        text = "Pular",
+                        isLoading = false,
+                        enabled = true,
+                        onclick = {}
+                    )
+                }
             }
         }
     )

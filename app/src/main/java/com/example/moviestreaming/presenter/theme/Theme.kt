@@ -12,6 +12,7 @@ import androidx.compose.runtime.remember
 
 private val LightColorScheme = MyColorScheme(
     defaultColor = DefaultColor,
+    disabledDefaultButtonColor = DisabledDefaultButtonColor,
     backgroundColor = BackgroundColorLight,
     textColor = TextColorLight,
     secondaryButtonColor = SecondaryButtonColorLight,
@@ -37,6 +38,7 @@ private val LightColorScheme = MyColorScheme(
 
 private val DarkColorScheme = MyColorScheme(
     defaultColor = DefaultColor,
+    disabledDefaultButtonColor = DisabledDefaultButtonColor,
     backgroundColor = BackgroundColorDark,
     textColor = TextColorDark,
     secondaryButtonColor = SecondaryButtonColorDark,
