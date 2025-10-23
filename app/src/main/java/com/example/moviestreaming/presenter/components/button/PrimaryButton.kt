@@ -9,6 +9,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -37,6 +38,11 @@ fun PrimaryButton(
         onClick = onclick,
         modifier = modifier
             .fillMaxWidth()
+            .shadow(
+                elevation = 24.dp,
+                spotColor = MovieStreamingTheme.colorScheme.defaultColor,
+                ambientColor = MovieStreamingTheme.colorScheme.defaultColor
+            )
             .height(58.dp),
         enabled = enabled && !isLoading,
         colors = ButtonDefaults.buttonColors(
