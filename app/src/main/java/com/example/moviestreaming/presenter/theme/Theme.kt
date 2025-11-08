@@ -15,6 +15,7 @@ private val LightColorScheme = MyColorScheme(
     disabledDefaultButtonColor = DisabledDefaultButtonColor,
     backgroundColor = BackgroundColorLight,
     backgroundSocialButtonColor = BackgroundSocialButtonColorLight,
+    topAppBarColor = TopAppBarColorLight,
     deviderColor = DividerColorLight,
     borderColor = BorderColorLight,
     textColor = TextColorLight,
@@ -36,7 +37,8 @@ private val LightColorScheme = MyColorScheme(
     greyscale100Color = Greyscale100Color,
     greyscale50Color = Greyscale50Color,
     whiteColor = WhiteColor,
-    blackColor = BlackColor
+    blackColor = BlackColor,
+    transparentColor = TransparentColor
 )
 
 private val DarkColorScheme = MyColorScheme(
@@ -44,6 +46,7 @@ private val DarkColorScheme = MyColorScheme(
     disabledDefaultButtonColor = DisabledDefaultButtonColor,
     backgroundColor = BackgroundColorDark,
     backgroundSocialButtonColor = BackgroundSocialButtonColorDark,
+    topAppBarColor = TopAppBarColorDark,
     deviderColor = DividerColorDark,
     borderColor = BorderColorDark,
     textColor = TextColorDark,
@@ -65,7 +68,8 @@ private val DarkColorScheme = MyColorScheme(
     greyscale100Color = Greyscale100Color,
     greyscale50Color = Greyscale50Color,
     whiteColor = WhiteColor,
-    blackColor = BlackColor
+    blackColor = BlackColor,
+    transparentColor = TransparentColor
 )
 
 private val LocalColorScheme = compositionLocalOf { LightColorScheme }

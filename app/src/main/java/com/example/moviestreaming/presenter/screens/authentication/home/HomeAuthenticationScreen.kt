@@ -27,6 +27,7 @@ import com.example.moviestreaming.R
 import com.example.moviestreaming.presenter.components.button.PrimaryButton
 import com.example.moviestreaming.presenter.components.button.SocialButton
 import com.example.moviestreaming.presenter.components.divider.HorizontalDividerWithText
+import com.example.moviestreaming.presenter.components.topAppBar.TopAppBarUI
 import com.example.moviestreaming.presenter.theme.MovieStreamingTheme
 import com.example.moviestreaming.presenter.theme.UrbanistFamily
 
@@ -38,6 +39,12 @@ fun HomeAuthenticationScreen() {
 @Composable
 fun HomeAuthenticationContent() {
     Scaffold(
+        topBar = {
+            TopAppBarUI(
+                title = "",
+                onclick = {}
+            )
+        },
         containerColor = MovieStreamingTheme.colorScheme.backgroundColor,
         content = { paddingValues ->
 
