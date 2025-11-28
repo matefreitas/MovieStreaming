@@ -9,6 +9,7 @@ import androidx.compose.runtime.compositionLocalOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.ui.graphics.Color
 
 private val LightColorScheme = MyColorScheme(
     defaultColor = DefaultColor,
@@ -16,6 +17,8 @@ private val LightColorScheme = MyColorScheme(
     backgroundColor = BackgroundColorLight,
     backgroundSocialButtonColor = BackgroundSocialButtonColorLight,
     topAppBarColor = TopAppBarColorLight,
+    alphaDefaultColor = AlphaDefaultColor,
+    textFieldBackgroundColor = TextFieldBackgroundColorLight,
     deviderColor = DividerColorLight,
     borderColor = BorderColorLight,
     textColor = TextColorLight,
@@ -47,6 +50,8 @@ private val DarkColorScheme = MyColorScheme(
     backgroundColor = BackgroundColorDark,
     backgroundSocialButtonColor = BackgroundSocialButtonColorDark,
     topAppBarColor = TopAppBarColorDark,
+    alphaDefaultColor = AlphaDefaultColor,
+    textFieldBackgroundColor = TextFieldBackgroundColorDark,
     deviderColor = DividerColorDark,
     borderColor = BorderColorDark,
     textColor = TextColorDark,
