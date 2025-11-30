@@ -9,4 +9,12 @@
     <string name="label_sign_with_password_authentication_screen">Entrar com senha</string>
     <string name="label_sign_up_account_authentication_screen">Não tem uma conta?</string>
     <string name="label_sign_up_authentication_screen">Criar conta</string>
+
+    <string name="label_title_singup_screen">Crie sua conta</string>
+    <string name="label_input_email_singup_screen">Email</string>
+    <string name="label_input_password_singup_screen">Senha</string>
+    <string name="label_button_singup_screen">Criar conta</string>
+    <string name="label_or_singup_screen">ou continue com</string>
+    <string name="label_sing_in_account_singup_screen">Já tem uma conta?</string>
+    <string name="label_sing_in_singup_screen">Entrar</string>
 </resources>
