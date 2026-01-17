@@ -20,6 +20,11 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
@@ -27,16 +32,23 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.moviestreaming.R
+import com.example.moviestreaming.core.enums.InputType
 import com.example.moviestreaming.presenter.components.button.PrimaryButton
 import com.example.moviestreaming.presenter.components.button.SocialButton
 import com.example.moviestreaming.presenter.components.divider.HorizontalDividerWithText
 import com.example.moviestreaming.presenter.components.textField.TextFieldUI
 import com.example.moviestreaming.presenter.components.topAppBar.TopAppBarUI
+import com.example.moviestreaming.presenter.screens.authentication.signup.action.SignupAction
+import com.example.moviestreaming.presenter.screens.authentication.signup.state.SignupState
+import com.example.moviestreaming.presenter.screens.authentication.signup.viewmodel.SignupViewModel
 import com.example.moviestreaming.presenter.theme.MovieStreamingTheme
 import com.example.moviestreaming.presenter.theme.UrbanistFamily
 
@@ -44,15 +56,24 @@ import com.example.moviestreaming.presenter.theme.UrbanistFamily
 fun SignupScreen(
     onBackPressed: () -> Unit
 ) {
+    val viewModel: SignupViewModel = viewModel()
+    val state = viewModel.state.collectAsState().value
+
     SignupContent(
+        state = state,
+        action = viewModel::submitAction,
         onBackPressed = onBackPressed
     )
 }
 
 @Composable
 fun SignupContent(
+    state: SignupState,
+    action: (SignupAction) -> Unit,
     onBackPressed: () -> Unit = {}
 ) {
+    var showPassword by remember { mutableStateOf(false) }
+
     Scaffold(
         topBar = {
             TopAppBarUI(
@@ -95,7 +116,7 @@ fun SignupContent(
 
                 TextFieldUI(
                     modifier = Modifier,
-                    value = "",
+                    value = state.email,
                     placeholder = stringResource(id = R.string.label_input_email_singup_screen),
                     leadingIcon = {
                         Icon(
@@ -103,7 +124,9 @@ fun SignupContent(
                             contentDescription = null
                         )
                     },
-                    onValueChange = {},
+                    onValueChange = {
+                        action(SignupAction.OnValueChange(value = it, type = InputType.EMAIL))
+                    },
                     keyboardOptions = KeyboardOptions(
                         keyboardType = KeyboardType.Email
                     )
@@ -113,7 +136,7 @@ fun SignupContent(
 
                 TextFieldUI(
                     modifier = Modifier,
-                    value = "",
+                    value = state.password,
                     placeholder = stringResource(id = R.string.label_input_password_singup_screen),
                     leadingIcon = {
                         Icon(
@@ -122,17 +145,32 @@ fun SignupContent(
                         )
                     },
                     tralingIcon = {
-                        IconButton(
-                            onClick = {},
-                            content = {
-                                Icon(
-                                    painter = painterResource(id = R.drawable.ic_show),
-                                    contentDescription = null
-                                )
-                            }
-                        )
+                        if (state.password.isNotEmpty()){
+                            IconButton(
+                                onClick = {
+                                    showPassword = !showPassword
+                                },
+                                content = {
+                                    Icon(
+                                        painter = if (showPassword){
+                                            painterResource(id = R.drawable.ic_hide)
+                                        } else {
+                                            painterResource(id = R.drawable.ic_show)
+                                        },
+                                        contentDescription = null
+                                    )
+                                }
+                            )
+                        }
                     },
-                    onValueChange = {},
+                    visualTransformation = if (showPassword) {
+                        VisualTransformation.None
+                    } else {
+                        PasswordVisualTransformation()
+                    },
+                    onValueChange = {
+                        action(SignupAction.OnValueChange(value = it, type = InputType.PASSWORD))
+                    },
                     keyboardOptions = KeyboardOptions(
                         keyboardType = KeyboardType.Password
                     )
@@ -173,7 +211,7 @@ fun SignupContent(
                         onclick = {}
                     )
                 }
-                
+
                 Spacer(modifier = Modifier.height(48.dp))
 
                 Row(
@@ -215,7 +253,7 @@ fun SignupContent(
 @PreviewLightDark
 @Composable
 private fun SignupScreenPreview() {
-    MovieStreamingTheme{
+    MovieStreamingTheme {
         SignupScreen(
             onBackPressed = {}
         )
