@@ -2,6 +2,7 @@ package com.example.moviestreaming.presenter.screens.authentication.signup.viewm
 
 import androidx.lifecycle.ViewModel
 import com.example.moviestreaming.core.enums.InputType
+import com.example.moviestreaming.core.functions.isValidEmail
 import com.example.moviestreaming.presenter.screens.authentication.signup.action.SignupAction
 import com.example.moviestreaming.presenter.screens.authentication.signup.state.SignupState
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -17,6 +18,11 @@ class SignupViewModel: ViewModel() {
             is SignupAction.OnValueChange -> {
                 onValueChange(action.value, action.type)
             }
+
+            is SignupAction.OnPasswordVisibilityChange -> {
+                onPasswordVisibilityChange()
+            }
+
         }
     }
 
@@ -29,6 +35,7 @@ class SignupViewModel: ViewModel() {
                 onPasswordChange(value)
             }
         }
+        onEnableSignupButton()
     }
 
     private fun onEmailChange(value: String){
@@ -40,6 +47,21 @@ class SignupViewModel: ViewModel() {
     private fun onPasswordChange(value: String){
         _state.update { currentState ->
             currentState.copy(password = value)
+        }
+    }
+
+    private fun onPasswordVisibilityChange(){
+        _state.update { currentState ->
+            currentState.copy(passwordVisibility = !currentState.passwordVisibility)
+        }
+    }
+
+    private fun onEnableSignupButton(){
+        val emailValid = isValidEmail(_state.value.email)
+        val passwordValid = state.value.password.isNotBlank()
+
+        _state.update { currentState ->
+            currentState.copy(enableSignUpButton = emailValid && passwordValid)
         }
     }
 
