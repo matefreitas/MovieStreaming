@@ -59,6 +59,7 @@ dependencies {
     implementation(libs.androidx.compose.material3)
     implementation(libs.viewmodel.compose)
     implementation(platform(libs.firebase.bom))
+    implementation(libs.firebase.authentication)
 
     //lottie
     implementation(libs.lottie.compose)
