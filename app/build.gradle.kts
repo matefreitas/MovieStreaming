@@ -60,6 +60,9 @@ dependencies {
     implementation(libs.viewmodel.compose)
     implementation(platform(libs.firebase.bom))
     implementation(libs.firebase.authentication)
+    implementation(platform(libs.koin.bom))
+    implementation(libs.koin.compose)
+    implementation(libs.koin.navigation)
 
     //lottie
     implementation(libs.lottie.compose)
