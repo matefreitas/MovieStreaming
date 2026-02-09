@@ -137,7 +137,7 @@ fun SignupContent(
                     placeholder = stringResource(id = R.string.label_input_password_singup_screen),
                     leadingIcon = {
                         Icon(
-                            painter = painterResource(id = R.drawable.ic_password),
+                            painter = painterResource(id = R.drawable.ic_lock_password),
                             contentDescription = null
                         )
                     },
