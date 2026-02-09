@@ -48,12 +48,13 @@ import com.example.moviestreaming.presenter.screens.authentication.signup.state.
 import com.example.moviestreaming.presenter.screens.authentication.signup.viewmodel.SignupViewModel
 import com.example.moviestreaming.presenter.theme.MovieStreamingTheme
 import com.example.moviestreaming.presenter.theme.UrbanistFamily
+import org.koin.androidx.compose.koinViewModel
 
 @Composable
 fun SignupScreen(
     onBackPressed: () -> Unit
 ) {
-    val viewModel: SignupViewModel = viewModel()
+    val viewModel = koinViewModel<SignupViewModel>()
     val state = viewModel.state.collectAsState().value
 
     SignupContent(

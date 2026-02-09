@@ -1,4 +1,4 @@
-package com.example.moviestreaming.domain.remote
+package com.example.moviestreaming.domain.remote.repository.authentication
 
 interface SignupRepository {
 
