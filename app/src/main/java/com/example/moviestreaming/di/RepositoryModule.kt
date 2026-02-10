@@ -5,5 +5,5 @@ import com.example.moviestreaming.domain.remote.repository.authentication.Signup
 import org.koin.dsl.module
 
 val RepositoryModule = module {
-    factory <SignupRepository> { SignupRepositoryImpl() }
+    factory <SignupRepository> { SignupRepositoryImpl(get()) }
 }

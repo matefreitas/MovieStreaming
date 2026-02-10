@@ -2,6 +2,8 @@ package com.example.moviestreaming.core.application
 
 import android.app.Application
 import com.example.moviestreaming.di.RepositoryModule
+import com.example.moviestreaming.di.appModules
+import com.example.moviestreaming.di.firebaseModule
 import com.example.moviestreaming.di.presenterModule
 import com.example.moviestreaming.di.useCaseModule
 import org.koin.android.ext.koin.androidContext
@@ -16,7 +18,7 @@ class MainApplication: Application() {
         startKoin {
             androidLogger()
             androidContext(this@MainApplication)
-            modules(RepositoryModule, useCaseModule, presenterModule)
+            modules(appModules)
         }
     }
 }

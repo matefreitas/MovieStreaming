@@ -6,4 +6,7 @@ sealed class SignupAction {
     data class OnValueChange(val value: String, val type: InputType): SignupAction()
 
     data object OnPasswordVisibilityChange: SignupAction()
+
+    data object onSignUp: SignupAction()
+
 }

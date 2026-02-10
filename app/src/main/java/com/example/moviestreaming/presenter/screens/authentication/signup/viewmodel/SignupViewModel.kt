@@ -1,6 +1,8 @@
 package com.example.moviestreaming.presenter.screens.authentication.signup.viewmodel
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.moviestreaming.core.enums.InputType
 import com.example.moviestreaming.core.functions.isValidEmail
 import com.example.moviestreaming.domain.remote.usercase.authentication.RegisterUseCase
@@ -9,15 +11,16 @@ import com.example.moviestreaming.presenter.screens.authentication.signup.state.
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
 
 class SignupViewModel(
     private val registerUseCase: RegisterUseCase
-): ViewModel() {
+) : ViewModel() {
     private val _state = MutableStateFlow(SignupState())
     val state = _state.asStateFlow()
 
     fun submitAction(action: SignupAction) {
-        when(action){
+        when (action) {
             is SignupAction.OnValueChange -> {
                 onValueChange(action.value, action.type)
             }
@@ -26,14 +29,27 @@ class SignupViewModel(
                 onPasswordVisibilityChange()
             }
 
+            is SignupAction.onSignUp -> {
+                onSignup()
+            }
+        }
+    }
+
+    private fun onSignup() {
+        viewModelScope.launch {
+            registerUseCase.invoke(
+                email = state.value.email,
+                password = state.value.password
+            )
         }
     }
 
     private fun onValueChange(value: String, type: InputType) {
-        when(type) {
+        when (type) {
             InputType.EMAIL -> {
                 onEmailChange(value)
             }
+
             InputType.PASSWORD -> {
                 onPasswordChange(value)
             }
@@ -41,25 +57,25 @@ class SignupViewModel(
         onEnableSignupButton()
     }
 
-    private fun onEmailChange(value: String){
+    private fun onEmailChange(value: String) {
         _state.update { currentState ->
             currentState.copy(email = value)
         }
     }
 
-    private fun onPasswordChange(value: String){
+    private fun onPasswordChange(value: String) {
         _state.update { currentState ->
             currentState.copy(password = value)
         }
     }
 
-    private fun onPasswordVisibilityChange(){
+    private fun onPasswordVisibilityChange() {
         _state.update { currentState ->
             currentState.copy(passwordVisibility = !currentState.passwordVisibility)
         }
     }
 
-    private fun onEnableSignupButton(){
+    private fun onEnableSignupButton() {
         val emailValid = isValidEmail(_state.value.email)
         val passwordValid = state.value.password.isNotBlank()
 
