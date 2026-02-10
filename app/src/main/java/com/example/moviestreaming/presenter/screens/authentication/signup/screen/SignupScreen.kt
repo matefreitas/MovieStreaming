@@ -36,7 +36,6 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.moviestreaming.R
 import com.example.moviestreaming.core.enums.InputType
 import com.example.moviestreaming.presenter.components.button.PrimaryButton
