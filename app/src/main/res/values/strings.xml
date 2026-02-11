@@ -28,4 +28,14 @@
     <string name="email_in_use_firebase_authentication">Este e-mail já está em uso.</string>
     <string name="strong_password_firebase_authentication">Insira uma senha mais forte.</string>
     <string name="user_not_found_firebase_authentication">Usuário não encontrado.</string>
+
+    <!--    LoginScreen-->
+    <string name="label_title_login_screen">Faça login na sua conta</string>
+    <string name="label_input_email_login_screen">Email</string>
+    <string name="label_input_password_login_screen">Senha</string>
+    <string name="label_button_login_screen">Entrar</string>
+    <string name="label_forgot_password_login_screen">Esqueceu a senha?</string>
+    <string name="label_or_login_screen">ou continue com</string>
+    <string name="label_sign_up_account_login_screen">Não tem uma conta?</string>
+    <string name="label_sign_up_login_screen">Criar conta</string>
 </resources>
