@@ -18,12 +18,19 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.SnackbarHost
+import androidx.compose.material3.SnackbarHostState
+import androidx.compose.material3.SnackbarResult
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
@@ -37,10 +44,11 @@ import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.moviestreaming.R
-import com.example.moviestreaming.core.enums.InputType
+import com.example.moviestreaming.core.enums.input.InputType
 import com.example.moviestreaming.presenter.components.button.PrimaryButton
 import com.example.moviestreaming.presenter.components.button.SocialButton
 import com.example.moviestreaming.presenter.components.divider.HorizontalDividerWithText
+import com.example.moviestreaming.presenter.components.snackbar.FeedBackUi
 import com.example.moviestreaming.presenter.components.textField.TextFieldUI
 import com.example.moviestreaming.presenter.components.topAppBar.TopAppBarUI
 import com.example.moviestreaming.presenter.screens.authentication.signup.action.SignupAction
@@ -48,6 +56,7 @@ import com.example.moviestreaming.presenter.screens.authentication.signup.state.
 import com.example.moviestreaming.presenter.screens.authentication.signup.viewmodel.SignupViewModel
 import com.example.moviestreaming.presenter.theme.MovieStreamingTheme
 import com.example.moviestreaming.presenter.theme.UrbanistFamily
+import kotlinx.coroutines.launch
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
@@ -70,8 +79,40 @@ fun SignupContent(
     action: (SignupAction) -> Unit,
     onBackPressed: () -> Unit = {}
 ) {
+    val context = LocalContext.current
+    val scope = rememberCoroutineScope()
+    val snackbarHostState = remember { SnackbarHostState() }
+    val feedBackMessage = stringResource(id = state.feedbackUi?.second ?: R.string.error_generic)
+
+
+    LaunchedEffect(state.hasError) {
+        if (state.hasError) {
+            scope.launch {
+                val result = snackbarHostState.showSnackbar(
+                    message = feedBackMessage
+                )
+                if (result == SnackbarResult.Dismissed) {
+                    action(SignupAction.ResetError)
+                }
+            }
+        }
+    }
 
     Scaffold(
+        snackbarHost = {
+            SnackbarHost(
+                hostState = snackbarHostState,
+                snackbar = { snackbarData ->
+                    state.feedbackUi?.let {
+                        FeedBackUi(
+                            message = snackbarData.visuals.message,
+                            type = it.first
+                        )
+                    }
+
+                }
+            )
+        },
         topBar = {
             TopAppBarUI(
                 onclick = onBackPressed
@@ -143,14 +184,14 @@ fun SignupContent(
                         )
                     },
                     tralingIcon = {
-                        if (state.password.isNotEmpty()){
+                        if (state.password.isNotEmpty()) {
                             IconButton(
                                 onClick = {
                                     action(SignupAction.OnPasswordVisibilityChange)
                                 },
                                 content = {
                                     Icon(
-                                        painter = if (state.passwordVisibility){
+                                        painter = if (state.passwordVisibility) {
                                             painterResource(id = R.drawable.ic_hide)
                                         } else {
                                             painterResource(id = R.drawable.ic_show)
@@ -181,7 +222,7 @@ fun SignupContent(
                     text = stringResource(id = R.string.label_button_singup_screen),
                     enabled = state.enableSignUpButton,
                     isLoading = false,
-                    onclick = { action(SignupAction.onSignUp) }
+                    onclick = { action(SignupAction.OnSignUp) }
                 )
 
                 Spacer(modifier = Modifier.height(20.dp))

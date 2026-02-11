@@ -1,5 +1,7 @@
 package com.example.moviestreaming.presenter.screens.authentication.signup.state
 
+import com.example.moviestreaming.core.enums.feedback.FeedbackType
+
 data class SignupState(
     val email: String = "",
     val password: String = "",
@@ -7,5 +9,5 @@ data class SignupState(
     val passwordVisibility: Boolean = false,
     val enableSignUpButton: Boolean = false,
     val hasError: Boolean = false,
-    val error: Int? = null
+    val feedbackUi: Pair<FeedbackType, Int>? = null
 )

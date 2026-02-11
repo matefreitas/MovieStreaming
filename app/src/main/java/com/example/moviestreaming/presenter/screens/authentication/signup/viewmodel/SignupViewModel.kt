@@ -2,8 +2,8 @@ package com.example.moviestreaming.presenter.screens.authentication.signup.viewm
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import androidx.lifecycle.viewmodel.compose.viewModel
-import com.example.moviestreaming.core.enums.InputType
+import com.example.moviestreaming.core.enums.feedback.FeedbackType
+import com.example.moviestreaming.core.enums.input.InputType
 import com.example.moviestreaming.core.functions.isValidEmail
 import com.example.moviestreaming.core.helper.FirebaseHelper
 import com.example.moviestreaming.domain.remote.model.User
@@ -33,26 +33,36 @@ class SignupViewModel(
                 onPasswordVisibilityChange()
             }
 
-            is SignupAction.onSignUp -> {
+            is SignupAction.OnSignUp -> {
                 onSignup()
+            }
+
+            is SignupAction.ResetError -> {
+                resetError()
             }
         }
     }
 
     private fun onSignup() {
         viewModelScope.launch {
-           try {
-               registerUseCase.invoke(
-                   email = state.value.email,
-                   password = state.value.password
-               )
-               saveUserUseCase.invoke(User(email = _state.value.email))
-           } catch (exception: Exception) {
-               exception.printStackTrace()
-               _state.update { currentState ->
-                   currentState.copy(hasError = true, error = FirebaseHelper.validError(exception.message))
-               }
-           }
+            try {
+                registerUseCase.invoke(
+                    email = state.value.email,
+                    password = state.value.password
+                )
+                saveUserUseCase.invoke(User(email = _state.value.email))
+            } catch (exception: Exception) {
+                exception.printStackTrace()
+                _state.update { currentState ->
+                    currentState.copy(
+                        hasError = true,
+                        feedbackUi = Pair(
+                            FeedbackType.ERROR,
+                            FirebaseHelper.validError(exception.message)
+                        )
+                    )
+                }
+            }
         }
     }
 
@@ -93,6 +103,12 @@ class SignupViewModel(
 
         _state.update { currentState ->
             currentState.copy(enableSignUpButton = emailValid && passwordValid)
+        }
+    }
+
+    private fun resetError() {
+        _state.update { currentState ->
+            currentState.copy(hasError = false, feedbackUi = null)
         }
     }
 
