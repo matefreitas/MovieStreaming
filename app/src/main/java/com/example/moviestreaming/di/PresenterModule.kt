@@ -7,5 +7,5 @@ import org.koin.dsl.module
 
 val presenterModule = module {
     viewModel { SignupViewModel(get(), get()) }
-    viewModel { LoginViewModel() }
+    viewModel { LoginViewModel(get()) }
 }

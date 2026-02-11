@@ -22,7 +22,7 @@
     <string name="error_generic">Ocorreu um erro, por favor tente novamente mais tarde.</string>
 
     <!--    Firebase Authentication-->
-    <string name="account_not_firebase_authentication">Nenhuma conta encontrada com este e-mail.</string>
+    <string name="account_not_firebase_authentication">As credenciais de autenticação fornecidas estão incorretas, malformadas ou expiraram..</string>
     <string name="invalid_email_firebase_authentication">Insira um e-mail válido.</string>
     <string name="invalid_password_firebase_authentication">Senha inválida, tente novamente.</string>
     <string name="email_in_use_firebase_authentication">Este e-mail já está em uso.</string>

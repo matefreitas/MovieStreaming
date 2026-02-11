@@ -17,12 +17,12 @@ class MainActivity : ComponentActivity() {
                 //SplashScreen()
                 //WelcomeScreen()
                 //HomeAuthenticationScreen()
-//                SignupScreen(
-//                    onBackPressed = {}
-//                )
-                LoginScreen(
+                SignupScreen(
                     onBackPressed = {}
                 )
+//                LoginScreen(
+//                    onBackPressed = {}
+//                )
             }
         }
     }
