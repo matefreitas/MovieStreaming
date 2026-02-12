@@ -3,7 +3,6 @@ package com.example.moviestreaming.data.remote.repository.authentication
 import com.example.moviestreaming.core.helper.FirebaseHelper
 import com.example.moviestreaming.domain.remote.repository.authentication.AuthenticationRepository
 import kotlinx.coroutines.suspendCancellableCoroutine
-import kotlin.coroutines.suspendCoroutine
 
 class AuthenticationRepositoryImpl : AuthenticationRepository {
 
