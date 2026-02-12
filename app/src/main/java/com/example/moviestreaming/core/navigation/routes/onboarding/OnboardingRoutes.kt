@@ -1,4 +1,4 @@
-package com.example.moviestreaming.core.navigation.route.onboarding
+package com.example.moviestreaming.core.navigation.routes.onboarding
 
 import kotlinx.serialization.Serializable
 

@@ -1,10 +1,10 @@
-package com.example.moviestreaming.core.navigation.route.hosts.onboarding
+package com.example.moviestreaming.core.navigation.hosts.onboarding
 
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import com.example.moviestreaming.core.navigation.route.onboarding.OnboardingRoutes
+import com.example.moviestreaming.core.navigation.routes.onboarding.OnboardingRoutes
 import com.example.moviestreaming.presenter.screens.splash.SplashScreen
 import com.example.moviestreaming.presenter.screens.welcome.WelcomeScreen
 

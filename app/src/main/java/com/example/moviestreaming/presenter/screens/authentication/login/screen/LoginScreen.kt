@@ -2,6 +2,8 @@ package com.example.moviestreaming.presenter.screens.authentication.login.screen
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -60,7 +62,7 @@ import org.koin.androidx.compose.koinViewModel
 
 @Composable
 fun LoginScreen(
-    onBackPressed: () -> Unit
+    onBackPressed: () -> Unit,
 ) {
     val viewModel = koinViewModel<LoginViewModel>()
     val state by viewModel.state.collectAsState()
@@ -73,7 +75,7 @@ fun LoginScreen(
 }
 
 @Composable
-fun LoginContent(
+private fun LoginContent(
     state: LoginState,
     action: (LoginAction) -> Unit,
     onBackPressed: () -> Unit = {}
@@ -100,10 +102,10 @@ fun LoginContent(
         snackbarHost = {
             SnackbarHost(
                 hostState = snackbarHostState,
-                snackbar = { snackbarData ->
+                snackbar = { snackBarData ->
                     state.feedbackUi?.let {
                         FeedBackUi(
-                            message = snackbarData.visuals.message,
+                            message = snackBarData.visuals.message,
                             type = it.first
                         )
                     }
@@ -288,6 +290,11 @@ fun LoginContent(
 
                     Text(
                         text = stringResource(id = R.string.label_sign_up_login_screen),
+                        modifier = Modifier
+                            .clickable(
+                                indication = null,
+                                interactionSource = remember { MutableInteractionSource() }
+                            ){ onBackPressed() },
                         style = TextStyle(
                             lineHeight = 19.6.sp,
                             fontFamily = UrbanistFamily,

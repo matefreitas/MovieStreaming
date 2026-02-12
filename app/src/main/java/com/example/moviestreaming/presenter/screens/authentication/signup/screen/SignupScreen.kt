@@ -2,6 +2,8 @@ package com.example.moviestreaming.presenter.screens.authentication.signup.scree
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -73,7 +75,7 @@ fun SignupScreen(
 }
 
 @Composable
-fun SignupContent(
+private fun SignupContent(
     state: SignupState,
     action: (SignupAction) -> Unit,
     onBackPressed: () -> Unit = {}
@@ -273,6 +275,11 @@ fun SignupContent(
 
                     Text(
                         text = stringResource(id = R.string.label_sing_in_singup_screen),
+                        modifier = Modifier
+                            .clickable(
+                                indication = null,
+                                interactionSource = remember { MutableInteractionSource() }
+                            ){ onBackPressed() },
                         style = TextStyle(
                             lineHeight = 19.6.sp,
                             fontFamily = UrbanistFamily,
@@ -292,7 +299,9 @@ fun SignupContent(
 @Composable
 private fun SignupScreenPreview() {
     MovieStreamingTheme {
-        SignupScreen(
+        SignupContent(
+            action = {},
+            state = SignupState(),
             onBackPressed = {}
         )
     }
