@@ -4,8 +4,8 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import com.example.moviestreaming.presenter.screens.authentication.login.screen.LoginScreen
-import com.example.moviestreaming.presenter.screens.authentication.signup.screen.SignupScreen
+import androidx.navigation.compose.rememberNavController
+import com.example.moviestreaming.core.navigation.route.hosts.onboarding.OnboardingNavHost
 import com.example.moviestreaming.presenter.theme.MovieStreamingTheme
 
 class MainActivity : ComponentActivity() {
@@ -14,15 +14,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             MovieStreamingTheme {
-                //SplashScreen()
-                //WelcomeScreen()
-                //HomeAuthenticationScreen()
-                SignupScreen(
-                    onBackPressed = {}
-                )
-//                LoginScreen(
-//                    onBackPressed = {}
-//                )
+                OnboardingNavHost(navHostController = rememberNavController())
             }
         }
     }
