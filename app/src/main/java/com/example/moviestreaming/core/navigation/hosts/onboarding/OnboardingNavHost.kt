@@ -7,8 +7,8 @@ import androidx.navigation.compose.composable
 import com.example.moviestreaming.core.navigation.hosts.authentication.authenticationNavHost
 import com.example.moviestreaming.core.navigation.routes.authentication.AuthenticationRoutes
 import com.example.moviestreaming.core.navigation.routes.onboarding.OnboardingRoutes
-import com.example.moviestreaming.presenter.screens.splash.SplashScreen
-import com.example.moviestreaming.presenter.screens.welcome.WelcomeScreen
+import com.example.moviestreaming.presenter.screens.splash.screen.SplashScreen
+import com.example.moviestreaming.presenter.screens.welcome.screen.WelcomeScreen
 
 @Composable
 fun OnboardingNavHost(navHostController: NavHostController) {
@@ -20,6 +20,13 @@ fun OnboardingNavHost(navHostController: NavHostController) {
             SplashScreen(
                 navigateToWelcomeScreen = {
                     navHostController.navigate(OnboardingRoutes.Welcome){
+                        popUpTo(OnboardingRoutes.Splash){
+                            inclusive = true
+                        }
+                    }
+                },
+                navigateToHomeAutheticationScreen = {
+                    navHostController.navigate(AuthenticationRoutes.Graph){
                         popUpTo(OnboardingRoutes.Splash){
                             inclusive = true
                         }

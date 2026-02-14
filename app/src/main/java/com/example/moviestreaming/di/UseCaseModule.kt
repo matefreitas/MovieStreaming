@@ -6,7 +6,7 @@ import com.example.moviestreaming.domain.remote.usercase.user.SaveUserUseCase
 import org.koin.dsl.module
 
 val useCaseModule = module {
-    factory { RegisterUseCase(get()) }
-    factory { SaveUserUseCase(get()) }
-    factory { LoginUseCase(get()) }
+    factory { RegisterUseCase(repository = get()) }
+    factory { SaveUserUseCase(repository = get()) }
+    factory { LoginUseCase(repository = get()) }
 }
