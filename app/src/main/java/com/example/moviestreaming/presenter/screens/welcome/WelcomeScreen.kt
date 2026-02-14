@@ -4,10 +4,8 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.material3.Scaffold
@@ -20,17 +18,22 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.moviestreaming.R
 import com.example.moviestreaming.presenter.components.button.PrimaryButton
-import com.example.moviestreaming.presenter.components.indicator.SliderIndicator
 import com.example.moviestreaming.presenter.components.slider.WelcomeSliderUI
 import com.example.moviestreaming.presenter.theme.MovieStreamingTheme
 
 @Composable
-fun WelcomeScreen() {
-    WelcomeContent()
+fun WelcomeScreen(
+    navigateToHomeAuthenticationScreen: () -> Unit
+) {
+    WelcomeContent(
+        navigateToHomeAuthenticationScreen = navigateToHomeAuthenticationScreen
+    )
 }
 
 @Composable
-fun WelcomeContent() {
+private fun WelcomeContent(
+    navigateToHomeAuthenticationScreen: () -> Unit
+) {
     val slideItems = listOf(
         Pair(
             "Bem-vindo",
@@ -84,7 +87,7 @@ fun WelcomeContent() {
                         text = "Pular",
                         isLoading = false,
                         enabled = true,
-                        onclick = {}
+                        onclick = navigateToHomeAuthenticationScreen
                     )
                 }
             }
@@ -95,5 +98,7 @@ fun WelcomeContent() {
 @Preview
 @Composable
 private fun WelcomePreview() {
-    WelcomeContent()
+    WelcomeContent(
+        navigateToHomeAuthenticationScreen = {}
+    )
 }
