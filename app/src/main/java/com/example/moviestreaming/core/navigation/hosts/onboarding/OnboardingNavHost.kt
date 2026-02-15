@@ -25,7 +25,7 @@ fun OnboardingNavHost(navHostController: NavHostController) {
                         }
                     }
                 },
-                navigateToHomeAutheticationScreen = {
+                navigateToHomeAuthenticationScreen = {
                     navHostController.navigate(AuthenticationRoutes.Graph){
                         popUpTo(OnboardingRoutes.Splash){
                             inclusive = true
