@@ -2,6 +2,7 @@ package com.example.moviestreaming.di
 
 import com.example.moviestreaming.presenter.screens.authentication.login.viewmodel.LoginViewModel
 import com.example.moviestreaming.presenter.screens.authentication.signup.viewmodel.SignupViewModel
+import com.example.moviestreaming.presenter.screens.main.download.viewmodel.DownloadViewModel
 import com.example.moviestreaming.presenter.screens.main.favorite.viewmodel.FavoriteViewModel
 import com.example.moviestreaming.presenter.screens.main.home.viewmodel.HomeViewModel
 import com.example.moviestreaming.presenter.screens.main.search.viewmodel.SearchViewModel
@@ -18,4 +19,5 @@ val presenterModule = module {
     viewModel { HomeViewModel() }
     viewModel { SearchViewModel() }
     viewModel { FavoriteViewModel() }
+    viewModel { DownloadViewModel() }
 }
