@@ -38,4 +38,11 @@
     <string name="label_or_login_screen">ou continue com</string>
     <string name="label_sign_up_account_login_screen">Não tem uma conta?</string>
     <string name="label_sign_up_login_screen">Criar conta</string>
+
+    <!--    BottomAppBar-->
+    <string name="label_home_bottom_app_bar">Início</string>
+    <string name="label_search_bottom_app_bar">Pesquisa</string>
+    <string name="label_favorite_bottom_app_bar">Favoritos</string>
+    <string name="label_download_bottom_app_bar">Download</string>
+    <string name="label_profile_bottom_app_bar">Conta</string>
 </resources>
