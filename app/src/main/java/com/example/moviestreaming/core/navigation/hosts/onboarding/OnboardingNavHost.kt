@@ -4,6 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.example.moviestreaming.core.navigation.hosts.app.appNavHost
 import com.example.moviestreaming.core.navigation.hosts.authentication.authenticationNavHost
 import com.example.moviestreaming.core.navigation.routes.authentication.AuthenticationRoutes
 import com.example.moviestreaming.core.navigation.routes.onboarding.OnboardingRoutes
@@ -46,6 +47,8 @@ fun OnboardingNavHost(navHostController: NavHostController) {
             )
         }
 
-        authenticationNavHost(navHostController)
+        authenticationNavHost(navHostController = navHostController)
+
+        appNavHost()
     }
 }
