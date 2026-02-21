@@ -9,5 +9,6 @@ data class SignupState(
     val passwordVisibility: Boolean = false,
     val enableSignUpButton: Boolean = false,
     val hasError: Boolean = false,
-    val feedbackUi: Pair<FeedbackType, Int>? = null
+    val feedbackUi: Pair<FeedbackType, Int>? = null,
+    val isAuthenticated: Boolean = false
 )

@@ -30,6 +30,7 @@ import org.koin.androidx.compose.koinViewModel
 
 @Composable
 fun SplashScreen(
+    navigateToAppScreen: () -> Unit,
     navigateToWelcomeScreen: () -> Unit,
     navigateToHomeAuthenticationScreen: () -> Unit
 ) {
@@ -38,13 +39,18 @@ fun SplashScreen(
     val scope = rememberCoroutineScope()
 
     LaunchedEffect(state.isLoading) {
-       if (!state.isLoading){
-           if(state.isWelcomeVisited){
-               navigateToHomeAuthenticationScreen()
-           } else {
-               navigateToWelcomeScreen()
-           }
-       }
+        if (!state.isLoading) {
+            if (state.isWelcomeVisited) {
+                if (state.isAuthenticated) {
+                    navigateToAppScreen()
+                } else {
+                    navigateToHomeAuthenticationScreen()
+                }
+
+            } else {
+                navigateToWelcomeScreen()
+            }
+        }
     }
 
     LaunchedEffect(true) {
@@ -71,7 +77,7 @@ private fun SplashContent() {
                 .fillMaxSize()
                 .padding(innerPadding)
                 .padding(vertical = 100.dp)
-        ){
+        ) {
             Image(
                 painter = painterResource(id = R.drawable.logo),
                 contentDescription = null,
@@ -94,7 +100,7 @@ private fun SplashContent() {
 @PreviewLightDark
 @Composable
 private fun SplashPreview() {
-    MovieStreamingTheme{
+    MovieStreamingTheme {
         SplashContent()
     }
 }

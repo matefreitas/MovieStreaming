@@ -6,6 +6,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.example.moviestreaming.core.navigation.hosts.app.appNavHost
 import com.example.moviestreaming.core.navigation.hosts.authentication.authenticationNavHost
+import com.example.moviestreaming.core.navigation.routes.app.AppRoutes
 import com.example.moviestreaming.core.navigation.routes.authentication.AuthenticationRoutes
 import com.example.moviestreaming.core.navigation.routes.onboarding.OnboardingRoutes
 import com.example.moviestreaming.presenter.screens.splash.screen.SplashScreen
@@ -19,6 +20,13 @@ fun OnboardingNavHost(navHostController: NavHostController) {
     ){
         composable<OnboardingRoutes.Splash> {
             SplashScreen(
+                navigateToAppScreen = {
+                    navHostController.navigate(AppRoutes.Graph){
+                        popUpTo(OnboardingRoutes.Splash){
+                            inclusive = true
+                        }
+                    }
+                },
                 navigateToWelcomeScreen = {
                     navHostController.navigate(OnboardingRoutes.Welcome){
                         popUpTo(OnboardingRoutes.Splash){

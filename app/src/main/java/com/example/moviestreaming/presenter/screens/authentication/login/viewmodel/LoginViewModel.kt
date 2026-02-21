@@ -48,7 +48,10 @@ class LoginViewModel(
                     email = state.value.email,
                     password = state.value.password
                 )
-                Log.d("Login", "onSignIn: Sucesso ao logar")
+
+                _state.update { currentState ->
+                    currentState.copy(isAuthenticated = true)
+                }
             } catch (exception: Exception) {
                 exception.printStackTrace()
                 _state.update { currentState ->
