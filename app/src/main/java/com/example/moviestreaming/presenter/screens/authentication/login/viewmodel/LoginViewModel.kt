@@ -1,6 +1,5 @@
 package com.example.moviestreaming.presenter.screens.authentication.login.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.moviestreaming.core.enums.feedback.FeedbackType
