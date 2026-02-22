@@ -13,6 +13,7 @@ data class MyColorScheme(
     val textFieldBackgroundColor: Color,
     val deviderColor: Color,
     val textColor: Color,
+    val iconColor: Color,
     val secondaryButtonColor: Color,
     val secondaryButtonTextColor: Color,
     val switchInactiveBackgroundColor: Color,
