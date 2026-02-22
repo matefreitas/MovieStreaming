@@ -1,5 +1,7 @@
 package com.example.moviestreaming.presenter.components.switch
 
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Switch
 import androidx.compose.material3.SwitchDefaults
 import androidx.compose.runtime.Composable
@@ -18,6 +20,11 @@ fun SwitchUI(
         checked = checked,
         onCheckedChange = onCheckedChange,
         enabled = enabled,
+        thumbContent = {
+            Spacer(
+                modifier = Modifier.size(SwitchDefaults.IconSize)
+            )
+        },
         colors = SwitchDefaults.colors(
             checkedThumbColor = MovieStreamingTheme.colorScheme.whiteColor,
             uncheckedThumbColor = MovieStreamingTheme.colorScheme.whiteColor,
@@ -35,7 +42,7 @@ fun SwitchUI(
 private fun SwitchUIPreview() {
     MovieStreamingTheme {
         SwitchUI(
-            checked = true,
+            checked = false,
             onCheckedChange = {}
         )
     }
