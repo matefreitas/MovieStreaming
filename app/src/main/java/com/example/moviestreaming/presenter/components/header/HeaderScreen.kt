@@ -32,8 +32,7 @@ fun HeaderScreen(
 ) {
     Row(
         modifier = modifier
-            .fillMaxWidth()
-            .padding(vertical = 12.dp),
+            .fillMaxWidth(),
         verticalAlignment = Alignment.CenterVertically
     ) {
         Image(

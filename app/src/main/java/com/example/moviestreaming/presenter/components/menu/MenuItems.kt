@@ -9,7 +9,7 @@ sealed class MenuItems(
     val type: MenuType
 ) {
     data object EditProfile: MenuItems(
-        icon = R.drawable.ic_edit,
+        icon = R.drawable.ic_user_line,
         label = R.string.label_edit_account_screen,
         type = MenuType.EDIT_PROFILE
     )
