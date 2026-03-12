@@ -2,20 +2,33 @@ package com.example.moviestreaming.presenter.screens.main.account.screen
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import br.com.hellodev.moviestreaming.core.enums.menu.MenuType
 import com.example.moviestreaming.R
 import com.example.moviestreaming.presenter.components.header.HeaderScreen
+import com.example.moviestreaming.presenter.components.image.ImageUi
 import com.example.moviestreaming.presenter.components.menu.MenuItemDarkModeUi
 import com.example.moviestreaming.presenter.components.menu.MenuItemLanguageUi
 import com.example.moviestreaming.presenter.components.menu.MenuItemUi
@@ -26,6 +39,7 @@ import com.example.moviestreaming.presenter.screens.main.account.action.AccountA
 import com.example.moviestreaming.presenter.screens.main.account.state.AccountState
 import com.example.moviestreaming.presenter.screens.main.account.viewmodel.AccountViewModel
 import com.example.moviestreaming.presenter.theme.MovieStreamingTheme
+import com.example.moviestreaming.presenter.theme.UrbanistFamily
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
@@ -74,10 +88,49 @@ private fun AccountContent(
             LazyColumn(
                 modifier = Modifier
                     .fillMaxSize()
-                    .padding(paddingValues),
+                    .padding(
+                        top = paddingValues.calculateTopPadding()
+                    ),
                 contentPadding = PaddingValues(24.dp),
-                verticalArrangement = Arrangement.spacedBy(16.dp)
+                verticalArrangement = Arrangement.spacedBy(16.dp),
+                horizontalAlignment = Alignment.CenterHorizontally
             ) {
+                item{
+                    ImageUi(
+                        modifier = Modifier
+                            .size(120.dp),
+                        imageModel = R.drawable.logo,
+                        contentScale = ContentScale.Crop,
+                        previewPlaceholder = painterResource(id = R.drawable.placeholder_welcome),
+                        shape = CircleShape,
+                        onclik = {}
+                    )
+                    Spacer(modifier = Modifier.height(12.dp))
+                    Text(
+                        text = "teste",
+                        style = TextStyle(
+                            fontSize = 20.sp,
+                            lineHeight = 24.sp,
+                            fontFamily = UrbanistFamily,
+                            fontWeight = FontWeight.Bold,
+                            color = MovieStreamingTheme.colorScheme.textColor,
+                            textAlign = TextAlign.Center
+                        )
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    Text(
+                        text = "teste",
+                        style = TextStyle(
+                            lineHeight = 19.6.sp,
+                            fontFamily = UrbanistFamily,
+                            fontWeight = FontWeight.Medium,
+                            color = MovieStreamingTheme.colorScheme.textColor,
+                            textAlign = TextAlign.Center,
+                            letterSpacing = 0.2.sp
+                        )
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                }
                 items(MenuItems.items()) { item ->
                     when (item.type) {
                         MenuType.LANGUAGE -> {
