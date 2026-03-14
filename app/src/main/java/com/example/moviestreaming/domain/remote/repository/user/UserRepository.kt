@@ -4,4 +4,5 @@ import com.example.moviestreaming.domain.remote.model.User
 
 interface UserRepository {
     suspend fun save(user: User)
+    suspend fun getUser(): User
 }

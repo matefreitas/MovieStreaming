@@ -21,5 +21,5 @@ val presenterModule = module {
     viewModel { SearchViewModel() }
     viewModel { FavoriteViewModel() }
     viewModel { DownloadViewModel() }
-    viewModel { AccountViewModel() }
+    viewModel { AccountViewModel(getUserUseCase = get()) }
 }
