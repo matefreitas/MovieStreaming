@@ -1,4 +1,4 @@
-package com.example.moviestreaming.presenter.components.bar
+package com.example.moviestreaming.presenter.components.bottom.bar
 
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.material3.BottomAppBar
@@ -84,7 +84,7 @@ private fun BottomBarItemUIPreview() {
                     )
                 }
             },
-            containerColor = MovieStreamingTheme.colorScheme.backgroundColor
+            containerColor = MovieStreamingTheme.colorScheme.primaryBackgroundColor
         )
     }
 }

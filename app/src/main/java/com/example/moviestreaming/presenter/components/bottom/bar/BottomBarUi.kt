@@ -1,4 +1,4 @@
-package com.example.moviestreaming.presenter.components.bar
+package com.example.moviestreaming.presenter.components.bottom.bar
 
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.BottomAppBar
@@ -31,6 +31,6 @@ fun BottomBarUi(
             }
         },
         modifier = modifier.clip(RoundedCornerShape(topStart = 16.dp, topEnd = 16.dp)),
-        containerColor = MovieStreamingTheme.colorScheme.backgroundColor
+        containerColor = MovieStreamingTheme.colorScheme.primaryBackgroundColor
     )
 }

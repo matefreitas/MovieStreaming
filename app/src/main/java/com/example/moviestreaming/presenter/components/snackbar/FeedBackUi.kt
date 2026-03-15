@@ -13,7 +13,6 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
-import androidx.compose.material3.Snackbar
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -25,7 +24,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.moviestreaming.R
 import com.example.moviestreaming.core.enums.feedback.FeedbackType
-import com.example.moviestreaming.presenter.theme.DefaultColor
 import com.example.moviestreaming.presenter.theme.MovieStreamingTheme
 import com.example.moviestreaming.presenter.theme.UrbanistFamily
 
@@ -37,7 +35,7 @@ fun FeedBackUi(
 ) {
     val defaultColor = when(type){
         FeedbackType.SUCCESS -> MovieStreamingTheme.colorScheme.successColor
-        FeedbackType.ERROR -> MovieStreamingTheme.colorScheme.errorColor
+        FeedbackType.ERROR -> MovieStreamingTheme.colorScheme.alertColor
         FeedbackType.WARNING -> MovieStreamingTheme.colorScheme.warningColor
         FeedbackType.INFO -> MovieStreamingTheme.colorScheme.infoColor
     }
@@ -78,7 +76,7 @@ private fun FeedBackUiPreview() {
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .background(MovieStreamingTheme.colorScheme.backgroundColor)
+                .background(MovieStreamingTheme.colorScheme.primaryBackgroundColor)
             ,
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally

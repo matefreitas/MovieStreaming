@@ -72,7 +72,7 @@ private fun WelcomeContent(
                 modifier = Modifier
                     .fillMaxSize()
                     .padding(bottom = paddingValues.calculateBottomPadding())
-                    .background(MovieStreamingTheme.colorScheme.backgroundColor)
+                    .background(MovieStreamingTheme.colorScheme.primaryBackgroundColor)
             ) {
                 Image(
                     painter = painterResource(R.drawable.placeholder_welcome),

@@ -119,7 +119,7 @@ private fun TextFieldUIView() {
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .background(MovieStreamingTheme.colorScheme.backgroundColor),
+                .background(MovieStreamingTheme.colorScheme.primaryBackgroundColor),
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {

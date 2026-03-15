@@ -81,7 +81,7 @@ private fun MenuItemUiPreview() {
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(16.dp)
-                .background(MovieStreamingTheme.colorScheme.backgroundColor),
+                .background(MovieStreamingTheme.colorScheme.primaryBackgroundColor),
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {

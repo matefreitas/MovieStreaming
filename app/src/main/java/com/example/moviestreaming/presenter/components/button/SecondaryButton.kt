@@ -3,19 +3,16 @@ package com.example.moviestreaming.presenter.components.button
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -27,7 +24,7 @@ import com.example.moviestreaming.presenter.theme.MovieStreamingTheme
 import com.example.moviestreaming.presenter.theme.UrbanistFamily
 
 @Composable
-fun PrimaryButton(
+fun SecondaryButton(
     modifier: Modifier = Modifier,
     text: String,
     enabled: Boolean = true,
@@ -40,16 +37,10 @@ fun PrimaryButton(
         onClick = onclick,
         modifier = modifier
             .fillMaxWidth()
-            .shadow(
-                elevation = 24.dp,
-                shape = CircleShape,
-                spotColor = MovieStreamingTheme.colorScheme.spotColor,
-                ambientColor = MovieStreamingTheme.colorScheme.ambientColor
-            )
             .height(58.dp),
         enabled = enabled && !isLoading,
         colors = ButtonDefaults.buttonColors(
-            containerColor = MovieStreamingTheme.colorScheme.defaultColor,
+            containerColor = MovieStreamingTheme.colorScheme.secondaryButtonColor,
             disabledContainerColor = MovieStreamingTheme.colorScheme.disabledDefaultButtonColor
         ),
         content = {
@@ -70,7 +61,7 @@ fun PrimaryButton(
                         lineHeight = 22.4.sp,
                         fontFamily = UrbanistFamily,
                         fontWeight = FontWeight.Bold,
-                        color = MovieStreamingTheme.colorScheme.whiteColor,
+                        color = MovieStreamingTheme.colorScheme.secondaryButtonTextColor,
                         textAlign = TextAlign.Center,
                         letterSpacing = 0.2.sp
                     )
@@ -82,11 +73,13 @@ fun PrimaryButton(
 
 @PreviewLightDark
 @Composable
-private fun PrimaryButtonPreview() {
-    PrimaryButton(
-        text = "Login",
-        enabled = true,
-        isLoading = false,
-        onclick = {}
-    )
+private fun SecondaryButtonPreview() {
+    MovieStreamingTheme {
+        SecondaryButton(
+            text = "Login",
+            enabled = true,
+            isLoading = false,
+            onclick = {}
+        )
+    }
 }

@@ -110,7 +110,7 @@ private fun SocialButtonPreview() {
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .background(MovieStreamingTheme.colorScheme.backgroundColor)
+                .background(MovieStreamingTheme.colorScheme.primaryBackgroundColor)
                 .padding(16.dp),
             verticalArrangement = Arrangement.Center
         ) {

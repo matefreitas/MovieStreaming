@@ -63,7 +63,7 @@ private fun HeaderScreenPreview() {
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .background(MovieStreamingTheme.colorScheme.backgroundColor)
+                .background(MovieStreamingTheme.colorScheme.primaryBackgroundColor)
                 .padding(24.dp)
         ) {
             HeaderScreen(

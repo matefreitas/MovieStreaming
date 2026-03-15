@@ -50,7 +50,7 @@ private fun HomeAuthenticationContent(
     navigateToSignupScreen: () -> Unit
 ) {
     Scaffold(
-        containerColor = MovieStreamingTheme.colorScheme.backgroundColor,
+        containerColor = MovieStreamingTheme.colorScheme.primaryBackgroundColor,
         content = { paddingValues ->
 
             Column(

@@ -90,7 +90,7 @@ private fun ImageUiPreview() {
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .background(MovieStreamingTheme.colorScheme.backgroundColor),
+                .background(MovieStreamingTheme.colorScheme.primaryBackgroundColor),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
