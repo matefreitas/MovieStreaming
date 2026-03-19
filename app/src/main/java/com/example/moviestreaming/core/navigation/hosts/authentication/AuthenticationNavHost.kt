@@ -4,7 +4,6 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
-import com.example.moviestreaming.core.navigation.hosts.app.appNavHost
 import com.example.moviestreaming.core.navigation.routes.app.AppRoutes
 import com.example.moviestreaming.core.navigation.routes.authentication.AuthenticationRoutes
 import com.example.moviestreaming.presenter.screens.authentication.home.HomeAuthenticationScreen
@@ -55,7 +54,5 @@ fun NavGraphBuilder.authenticationNavHost(navHostController: NavHostController) 
                 }
             )
         }
-
-        appNavHost()
     }
 }

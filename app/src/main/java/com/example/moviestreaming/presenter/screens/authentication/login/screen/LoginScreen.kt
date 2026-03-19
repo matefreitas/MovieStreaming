@@ -228,7 +228,7 @@ private fun LoginContent(
                 PrimaryButton(
                     text = stringResource(id = R.string.label_button_login_screen),
                     enabled = state.enableSignInButton,
-                    isLoading = false,
+                    isLoading = state.isLoading,
                     onclick = { action(LoginAction.OnSignIn) }
                 )
 

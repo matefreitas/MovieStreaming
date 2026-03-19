@@ -6,12 +6,16 @@ import androidx.navigation.navigation
 import com.example.moviestreaming.core.navigation.routes.app.AppRoutes
 import com.example.moviestreaming.presenter.screens.main.app.AppScreen
 
-fun NavGraphBuilder.appNavHost(){
+fun NavGraphBuilder.appNavHost(
+    navigateToHomeAuthenticator: () -> Unit
+){
     navigation<AppRoutes.Graph>(
         startDestination = AppRoutes.App
     ){
         composable <AppRoutes.App>{
-            AppScreen()
+            AppScreen(
+                navigateToHomeAuthenticator = navigateToHomeAuthenticator
+            )
         }
     }
 }

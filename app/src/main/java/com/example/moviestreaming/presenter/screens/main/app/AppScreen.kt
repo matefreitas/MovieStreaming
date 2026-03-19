@@ -14,12 +14,18 @@ import com.example.moviestreaming.presenter.components.bottom.bar.BottomBarUi
 import com.example.moviestreaming.presenter.theme.MovieStreamingTheme
 
 @Composable
-fun AppScreen() {
-    AppContent()
+fun AppScreen(
+    navigateToHomeAuthenticator: () -> Unit
+) {
+    AppContent(
+        navigateToHomeAuthenticator = navigateToHomeAuthenticator
+    )
 }
 
 @Composable
-private fun AppContent(){
+private fun AppContent(
+    navigateToHomeAuthenticator: () -> Unit
+){
     val navController = rememberNavController()
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentDestination = navBackStackEntry?.destination
@@ -45,6 +51,7 @@ private fun AppContent(){
                     .background(MovieStreamingTheme.colorScheme.primaryBackgroundColor)
                     .padding(paddingValues),
                 navHostController = navController,
+                navigateToHomeAuthenticator = navigateToHomeAuthenticator
             )
         }
     )
@@ -54,6 +61,8 @@ private fun AppContent(){
 @Composable
 private fun AppScreenPreview(){
     MovieStreamingTheme {
-        AppContent()
+        AppContent(
+            navigateToHomeAuthenticator = {}
+        )
     }
 }

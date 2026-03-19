@@ -54,15 +54,17 @@ import kotlinx.coroutines.launch
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
-fun AccountScreen() {
+fun AccountScreen(
+    navigateToHomeAuthenticator: () -> Unit
+) {
     val viewModel = koinViewModel<AccountViewModel>()
     val state by viewModel.state.collectAsState()
 
     AccountContent(
         state = state,
         action = viewModel::submit,
-        onItemClick = { menu ->
-            when (menu.type) {
+        onItemClick = { type ->
+            when (type) {
                 MenuType.EDIT_PROFILE -> {}
                 MenuType.NOTIFICATION -> {}
                 MenuType.DOWNLOAD -> {}
@@ -71,7 +73,10 @@ fun AccountScreen() {
                 MenuType.DARK_MODE -> {}
                 MenuType.HELP_CENTER -> {}
                 MenuType.PRIVACY_POLICY -> {}
-                MenuType.LOGOUT -> {}
+                MenuType.LOGOUT -> {
+                    viewModel.submit(AccountAction.Logout)
+                    navigateToHomeAuthenticator()
+                }
             }
         }
     )
@@ -81,7 +86,7 @@ fun AccountScreen() {
 private fun AccountContent(
     state: AccountState,
     action: (AccountAction) -> Unit,
-    onItemClick: (MenuItems) -> Unit
+    onItemClick: (MenuType) -> Unit
 ) {
     val sheetState = rememberModalBottomSheetState()
     val scope = rememberCoroutineScope()
@@ -156,7 +161,7 @@ private fun AccountContent(
                             MenuItemLanguageUi(
                                 icon = item.icon,
                                 label = item.label,
-                                onClick = { onItemClick(item) }
+                                onClick = { onItemClick(item.type) }
                             )
                         }
 
@@ -165,7 +170,7 @@ private fun AccountContent(
                                 icon = item.icon,
                                 label = item.label,
                                 isDarkMode = false,
-                                onCheckedChange = { onItemClick(item) }
+                                onCheckedChange = { onItemClick(item.type) }
                             )
                         }
 
@@ -177,7 +182,7 @@ private fun AccountContent(
                                     if (item.type == MenuType.LOGOUT) {
                                         showBottomSheet = true
                                     } else {
-                                        onItemClick(item)
+                                        onItemClick(item.type)
                                     }
                                 }
                             )
@@ -205,7 +210,10 @@ private fun AccountContent(
                                     }
                                 }
                             },
-                            onConfirmClick = {}
+                            onConfirmClick = {
+                                showBottomSheet = false
+                                onItemClick(MenuType.LOGOUT)
+                            }
                         )
                     }
                 )

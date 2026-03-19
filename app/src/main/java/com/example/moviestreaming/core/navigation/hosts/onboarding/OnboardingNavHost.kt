@@ -57,6 +57,14 @@ fun OnboardingNavHost(navHostController: NavHostController) {
 
         authenticationNavHost(navHostController = navHostController)
 
-        appNavHost()
+        appNavHost(
+            navigateToHomeAuthenticator = {
+                navHostController.navigate(AuthenticationRoutes.Graph){
+                    popUpTo(0) {
+                        inclusive = true
+                    }
+                }
+            }
+        )
     }
 }

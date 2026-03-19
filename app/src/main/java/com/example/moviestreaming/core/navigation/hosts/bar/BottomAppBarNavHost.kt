@@ -15,7 +15,8 @@ import com.example.moviestreaming.presenter.screens.main.search.screen.SearchScr
 @Composable
 fun BottomAppBarNavHost(
     modifier: Modifier = Modifier,
-    navHostController: NavHostController
+    navHostController: NavHostController,
+    navigateToHomeAuthenticator: () -> Unit
 ) {
    NavHost(
        navController = navHostController,
@@ -35,7 +36,9 @@ fun BottomAppBarNavHost(
            DownloadScreen()
        }
        composable<BottomAppBarRoutes.Account>{
-           AccountScreen()
+           AccountScreen(
+               navigateToHomeAuthenticator = navigateToHomeAuthenticator
+           )
        }
    }
 }
