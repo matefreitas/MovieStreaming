@@ -6,11 +6,11 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.example.moviestreaming.core.navigation.routes.bar.BottomAppBarRoutes
-import com.example.moviestreaming.presenter.screens.main.account.screen.AccountScreen
-import com.example.moviestreaming.presenter.screens.main.download.screen.DownloadScreen
-import com.example.moviestreaming.presenter.screens.main.favorite.screen.FavoriteScreen
-import com.example.moviestreaming.presenter.screens.main.home.screen.HomeScreen
-import com.example.moviestreaming.presenter.screens.main.search.screen.SearchScreen
+import com.example.moviestreaming.presenter.features.main.account.screen.AccountScreen
+import com.example.moviestreaming.presenter.features.main.download.screen.DownloadScreen
+import com.example.moviestreaming.presenter.features.main.favorite.screen.FavoriteScreen
+import com.example.moviestreaming.presenter.features.main.home.screen.HomeScreen
+import com.example.moviestreaming.presenter.features.main.search.screen.SearchScreen
 
 @Composable
 fun BottomAppBarNavHost(

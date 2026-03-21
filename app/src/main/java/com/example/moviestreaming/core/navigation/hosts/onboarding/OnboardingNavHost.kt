@@ -9,8 +9,8 @@ import com.example.moviestreaming.core.navigation.hosts.authentication.authentic
 import com.example.moviestreaming.core.navigation.routes.app.AppRoutes
 import com.example.moviestreaming.core.navigation.routes.authentication.AuthenticationRoutes
 import com.example.moviestreaming.core.navigation.routes.onboarding.OnboardingRoutes
-import com.example.moviestreaming.presenter.screens.splash.screen.SplashScreen
-import com.example.moviestreaming.presenter.screens.welcome.screen.WelcomeScreen
+import com.example.moviestreaming.presenter.features.splash.screen.SplashScreen
+import com.example.moviestreaming.presenter.features.welcome.screen.WelcomeScreen
 
 @Composable
 fun OnboardingNavHost(navHostController: NavHostController) {

@@ -6,9 +6,9 @@ import androidx.navigation.compose.composable
 import androidx.navigation.navigation
 import com.example.moviestreaming.core.navigation.routes.app.AppRoutes
 import com.example.moviestreaming.core.navigation.routes.authentication.AuthenticationRoutes
-import com.example.moviestreaming.presenter.screens.authentication.home.HomeAuthenticationScreen
-import com.example.moviestreaming.presenter.screens.authentication.login.screen.LoginScreen
-import com.example.moviestreaming.presenter.screens.authentication.signup.screen.SignupScreen
+import com.example.moviestreaming.presenter.features.authentication.home.HomeAuthenticationScreen
+import com.example.moviestreaming.presenter.features.authentication.login.screen.LoginScreen
+import com.example.moviestreaming.presenter.features.authentication.signup.screen.SignupScreen
 
 fun NavGraphBuilder.authenticationNavHost(navHostController: NavHostController) {
     navigation<AuthenticationRoutes.Graph>(
