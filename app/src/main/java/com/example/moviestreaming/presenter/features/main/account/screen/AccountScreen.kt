@@ -55,7 +55,8 @@ import org.koin.androidx.compose.koinViewModel
 
 @Composable
 fun AccountScreen(
-    navigateToHomeAuthenticator: () -> Unit
+    navigateToHomeAuthenticator: () -> Unit,
+    navigateToEditProfileScreen: () -> Unit
 ) {
     val viewModel = koinViewModel<AccountViewModel>()
     val state by viewModel.state.collectAsState()
@@ -65,7 +66,10 @@ fun AccountScreen(
         action = viewModel::submit,
         onItemClick = { type ->
             when (type) {
-                MenuType.EDIT_PROFILE -> {}
+                MenuType.EDIT_PROFILE -> {
+                    navigateToEditProfileScreen()
+                }
+
                 MenuType.NOTIFICATION -> {}
                 MenuType.DOWNLOAD -> {}
                 MenuType.SECURITY -> {}
