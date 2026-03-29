@@ -9,12 +9,15 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.foundation.text.selection.LocalTextSelectionColors
+import androidx.compose.foundation.text.selection.TextSelectionColors
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -50,55 +53,63 @@ fun TextFieldUI(
     onValueChange: (String) -> Unit
 ) {
     val focusRequester = remember { FocusRequester() }
+    val customTextSelectionColors = TextSelectionColors(
+        handleColor = MovieStreamingTheme.colorScheme.defaultColor,
+        backgroundColor = MovieStreamingTheme.colorScheme.alphaDefaultColor
+    )
 
     Column(
         modifier = modifier
             .fillMaxWidth()
     ) {
-        TextField(
-            value = value,
-            onValueChange = {
-                onValueChange(it)
-            },
-            modifier = Modifier
-                .fillMaxWidth()
-                .border(
-                    width = 1.dp,
-                    color = if (isError) MovieStreamingTheme.colorScheme.defaultColor else MovieStreamingTheme.colorScheme.transparentColor,
-                    shape = RoundedCornerShape(12.dp)
-                )
-                .focusRequester(focusRequester),
-            enabled = enabled,
-            placeholder = {
-                Text(
-                    text = placeholder,
-                    style = TextStyle(
-                        lineHeight = 19.6.sp,
-                        fontFamily = UrbanistFamily,
-                        letterSpacing = 0.2.sp,
-                        color = MovieStreamingTheme.colorScheme.greyscale500Color
+        CompositionLocalProvider(LocalTextSelectionColors provides customTextSelectionColors){
+            TextField(
+                value = value,
+                onValueChange = {
+                    onValueChange(it)
+                },
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .border(
+                        width = 1.dp,
+                        color = if (isError) MovieStreamingTheme.colorScheme.defaultColor else MovieStreamingTheme.colorScheme.transparentColor,
+                        shape = RoundedCornerShape(12.dp)
                     )
-                )
-            },
-            leadingIcon = leadingIcon,
-            trailingIcon = tralingIcon,
-            isError = isError,
-            visualTransformation = visualTransformation,
-            keyboardOptions = keyboardOptions,
-            singleLine = singleLine,
-            shape = RoundedCornerShape(12.dp),
-            colors = TextFieldDefaults.colors(
-                unfocusedContainerColor = MovieStreamingTheme.colorScheme.textFieldBackgroundColor,
-                focusedContainerColor = MovieStreamingTheme.colorScheme.textFieldBackgroundColor,
-                focusedIndicatorColor = MovieStreamingTheme.colorScheme.transparentColor,
-                unfocusedIndicatorColor = MovieStreamingTheme.colorScheme.transparentColor,
-                errorContainerColor = MovieStreamingTheme.colorScheme.alphaDefaultColor,
-                errorIndicatorColor = MovieStreamingTheme.colorScheme.transparentColor,
-                unfocusedTextColor = MovieStreamingTheme.colorScheme.textColor,
-                focusedTextColor = MovieStreamingTheme.colorScheme.textColor,
-                errorTextColor = MovieStreamingTheme.colorScheme.textColor
+                    .focusRequester(focusRequester),
+                enabled = enabled,
+                placeholder = {
+                    Text(
+                        text = placeholder,
+                        style = TextStyle(
+                            lineHeight = 19.6.sp,
+                            fontFamily = UrbanistFamily,
+                            letterSpacing = 0.2.sp,
+                            color = MovieStreamingTheme.colorScheme.greyscale500Color
+                        )
+                    )
+                },
+                leadingIcon = leadingIcon,
+                trailingIcon = tralingIcon,
+                isError = isError,
+                visualTransformation = visualTransformation,
+                keyboardOptions = keyboardOptions,
+                singleLine = singleLine,
+                shape = RoundedCornerShape(12.dp),
+                colors = TextFieldDefaults.colors(
+                    unfocusedContainerColor = MovieStreamingTheme.colorScheme.textFieldBackgroundColor,
+                    focusedContainerColor = MovieStreamingTheme.colorScheme.textFieldBackgroundColor,
+                    focusedIndicatorColor = MovieStreamingTheme.colorScheme.transparentColor,
+                    unfocusedIndicatorColor = MovieStreamingTheme.colorScheme.transparentColor,
+                    errorContainerColor = MovieStreamingTheme.colorScheme.alphaDefaultColor,
+                    errorIndicatorColor = MovieStreamingTheme.colorScheme.transparentColor,
+                    unfocusedTextColor = MovieStreamingTheme.colorScheme.textColor,
+                    focusedTextColor = MovieStreamingTheme.colorScheme.textColor,
+                    errorTextColor = MovieStreamingTheme.colorScheme.textColor,
+                    cursorColor = MovieStreamingTheme.colorScheme.defaultColor,
+
+                    )
             )
-        )
+        }
 
         if (requireKeyboardFocus) {
             LaunchedEffect(Unit) {

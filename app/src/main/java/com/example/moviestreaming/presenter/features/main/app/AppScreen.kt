@@ -1,6 +1,7 @@
 package com.example.moviestreaming.presenter.features.main.app
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
@@ -11,6 +12,7 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.example.moviestreaming.core.navigation.hosts.bar.BottomAppBarNavHost
 import com.example.moviestreaming.presenter.components.bottom.bar.BottomBarUi
+import com.example.moviestreaming.presenter.components.bottom.bar.isBottomAppBar
 import com.example.moviestreaming.presenter.theme.MovieStreamingTheme
 
 @Composable
@@ -49,7 +51,12 @@ private fun AppContent(
             BottomAppBarNavHost(
                 modifier = Modifier
                     .background(MovieStreamingTheme.colorScheme.primaryBackgroundColor)
-                    .padding(paddingValues),
+                    .padding(
+                        when (isBottomAppBar(currentDestination)){
+                            true -> paddingValues
+                            else -> PaddingValues()
+                        }
+                    ),
                 navHostController = navController,
                 navigateToHomeAuthenticator = navigateToHomeAuthenticator
             )

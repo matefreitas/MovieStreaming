@@ -6,6 +6,7 @@ import com.example.moviestreaming.presenter.features.profile.action.EditProfileA
 import com.example.moviestreaming.presenter.features.profile.state.EditProfileState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.update
 
 class EditProfileViewModel() : ViewModel() {
     private val _state = MutableStateFlow(EditProfileState())
@@ -13,7 +14,34 @@ class EditProfileViewModel() : ViewModel() {
 
     fun submitAction(action: EditProfileAction) {
         when (action) {
-            EditProfileAction.Update -> {}
+            is EditProfileAction.Update -> {}
+            is EditProfileAction.OnNameChanged -> {
+                onNameChanged(name = action.name)
+            }
+            is EditProfileAction.OnPhoneChanged -> {
+                onPhoneChanged(phone = action.phone)
+            }
+            is EditProfileAction.OnSurnameChanged -> {
+                onSurnameChanged(surname = action.surname)
+            }
+        }
+    }
+
+    private fun onNameChanged(name: String) {
+        _state.update {
+            it.copy(name = name)
+        }
+    }
+
+    private fun onSurnameChanged(surname: String) {
+        _state.update {
+            it.copy(surname = surname)
+        }
+    }
+
+    private fun onPhoneChanged(phone: String) {
+        _state.update {
+            it.copy(phone = phone)
         }
     }
 }

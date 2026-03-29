@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
@@ -21,6 +22,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
 import com.example.moviestreaming.R
@@ -74,7 +76,7 @@ fun EditProfileContent(
             verticalArrangement = Arrangement.spacedBy(24.dp)
         ) {
             ImageUi(
-                modifier = Modifier.size(120.dp),
+                modifier = Modifier.size(140.dp),
                 imageModel = "",
                 contentScale = ContentScale.Crop,
                 previewPlaceholder = painterResource(R.drawable.placeholder_welcome),
@@ -84,15 +86,19 @@ fun EditProfileContent(
             )
 
             TextFieldUI(
-                value = "",
+                value = state.name,
                 placeholder = stringResource(id = R.string.label_input_first_name_edit_profile_screen),
-                onValueChange = {}
+                onValueChange = {
+                    action(EditProfileAction.OnNameChanged(it))
+                }
             )
 
             TextFieldUI(
-                value = "",
+                value = state.surname,
                 placeholder = stringResource(id = R.string.label_input_surname_edit_profile_screen),
-                onValueChange = {}
+                onValueChange = {
+                    action(EditProfileAction.OnSurnameChanged(it))
+                }
             )
 
             TextFieldUI(
@@ -109,9 +115,14 @@ fun EditProfileContent(
             )
 
             TextFieldUI(
-                value = "",
+                value = state.phone,
                 placeholder = stringResource(id = R.string.label_input_phone_edit_profile_screen),
-                onValueChange = {}
+                keyboardOptions = KeyboardOptions(
+                    keyboardType = KeyboardType.Phone
+                ),
+                onValueChange = {
+                    action(EditProfileAction.OnPhoneChanged(it))
+                }
             )
 
             TextFieldUI(
@@ -125,8 +136,6 @@ fun EditProfileContent(
                 placeholder = stringResource(id = R.string.label_input_pais_edit_profile_screen),
                 onValueChange = {}
             )
-
-            Spacer(modifier = Modifier.height(24.dp))
 
             PrimaryButton(
                 text = stringResource(id = R.string.label_button_update_edit_profile_screen),
