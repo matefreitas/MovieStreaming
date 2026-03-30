@@ -45,6 +45,7 @@ fun TextFieldUI(
     enabled: Boolean = true,
     isError: Boolean = false,
     singleLine: Boolean = false,
+    maxLenght: Int = Int.MAX_VALUE,
     leadingIcon: @Composable (() -> Unit)? = null,
     tralingIcon: @Composable (() -> Unit)? = null,
     requireKeyboardFocus: Boolean = false,
@@ -62,11 +63,19 @@ fun TextFieldUI(
         modifier = modifier
             .fillMaxWidth()
     ) {
-        CompositionLocalProvider(LocalTextSelectionColors provides customTextSelectionColors){
+        CompositionLocalProvider(LocalTextSelectionColors provides customTextSelectionColors) {
             TextField(
                 value = value,
-                onValueChange = {
-                    onValueChange(it)
+                onValueChange = { value ->
+                    val filteredValue = when (visualTransformation) {
+                        VisualTransformation.None -> value
+                        else -> value.filter { it.isDigit() }
+                    }
+
+                    if (filteredValue.length <= maxLenght) {
+                        onValueChange(filteredValue)
+                    }
+
                 },
                 modifier = Modifier
                     .fillMaxWidth()
@@ -126,7 +135,7 @@ private fun TextFieldUIView() {
         mutableStateOf("")
     }
 
-    MovieStreamingTheme{
+    MovieStreamingTheme {
         Column(
             modifier = Modifier
                 .fillMaxSize()

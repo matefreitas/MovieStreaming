@@ -25,6 +25,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
+import br.com.hellodev.moviestreaming.core.helper.MaskVisualTransformation
 import com.example.moviestreaming.R
 import com.example.moviestreaming.presenter.components.button.PrimaryButton
 import com.example.moviestreaming.presenter.components.image.ImageUi
@@ -120,6 +121,8 @@ fun EditProfileContent(
                 keyboardOptions = KeyboardOptions(
                     keyboardType = KeyboardType.Phone
                 ),
+                maxLenght = MaskVisualTransformation.PHONE_MASK_SIZE,
+                visualTransformation = MaskVisualTransformation(MaskVisualTransformation.PHONE_MASK),
                 onValueChange = {
                     action(EditProfileAction.OnPhoneChanged(it))
                 }
