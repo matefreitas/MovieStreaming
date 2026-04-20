@@ -80,6 +80,7 @@ class LoginViewModel(
             InputType.PASSWORD -> {
                 onPasswordChange(value)
             }
+            else -> {}
         }
         onEnableSignInButton()
     }

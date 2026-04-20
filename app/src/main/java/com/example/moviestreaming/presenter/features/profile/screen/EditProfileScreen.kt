@@ -27,6 +27,8 @@ import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
 import br.com.hellodev.moviestreaming.core.helper.MaskVisualTransformation
 import com.example.moviestreaming.R
+import com.example.moviestreaming.core.enums.input.InputType
+import com.example.moviestreaming.core.functions.inputErrorMessage
 import com.example.moviestreaming.presenter.components.button.PrimaryButton
 import com.example.moviestreaming.presenter.components.image.ImageUi
 import com.example.moviestreaming.presenter.components.textField.TextFieldUI
@@ -88,6 +90,8 @@ fun EditProfileContent(
 
             TextFieldUI(
                 value = state.name,
+                isError = state.inputError == InputType.FIRST_NAME,
+                error = stringResource(inputErrorMessage(InputType.FIRST_NAME)),
                 placeholder = stringResource(id = R.string.label_input_first_name_edit_profile_screen),
                 onValueChange = {
                     action(EditProfileAction.OnNameChanged(it))
@@ -96,6 +100,8 @@ fun EditProfileContent(
 
             TextFieldUI(
                 value = state.surname,
+                isError = state.inputError == InputType.SURNAME,
+                error = stringResource(inputErrorMessage(InputType.SURNAME)),
                 placeholder = stringResource(id = R.string.label_input_surname_edit_profile_screen),
                 onValueChange = {
                     action(EditProfileAction.OnSurnameChanged(it))
@@ -117,6 +123,8 @@ fun EditProfileContent(
 
             TextFieldUI(
                 value = state.phone,
+                isError = state.inputError == InputType.PHONE,
+                error = stringResource(inputErrorMessage(InputType.PHONE)),
                 placeholder = stringResource(id = R.string.label_input_phone_edit_profile_screen),
                 keyboardOptions = KeyboardOptions(
                     keyboardType = KeyboardType.Phone
@@ -144,7 +152,7 @@ fun EditProfileContent(
                 text = stringResource(id = R.string.label_button_update_edit_profile_screen),
                 isLoading = false,
                 enabled = true,
-                onclick = {}
+                onclick = { action(EditProfileAction.Update) }
             )
         }
     }

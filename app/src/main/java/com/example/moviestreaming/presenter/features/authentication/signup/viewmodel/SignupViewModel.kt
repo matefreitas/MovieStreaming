@@ -78,6 +78,7 @@ class SignupViewModel(
             InputType.PASSWORD -> {
                 onPasswordChange(value)
             }
+            else -> {}
         }
         onEnableSignupButton()
     }

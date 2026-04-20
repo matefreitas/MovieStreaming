@@ -33,7 +33,7 @@ fun FeedBackUi(
     message: String,
     type: FeedbackType
 ) {
-    val defaultColor = when(type){
+    val containerColor = when(type){
         FeedbackType.SUCCESS -> MovieStreamingTheme.colorScheme.successColor
         FeedbackType.ERROR -> MovieStreamingTheme.colorScheme.alertColor
         FeedbackType.WARNING -> MovieStreamingTheme.colorScheme.warningColor
@@ -44,7 +44,7 @@ fun FeedBackUi(
         modifier = modifier.fillMaxWidth().padding(16.dp),
         shape = RoundedCornerShape(10.dp),
         colors = CardDefaults.cardColors(
-            containerColor = defaultColor.copy(alpha = 0.2f)
+            containerColor = containerColor
         )
     ) {
         Row(
@@ -54,14 +54,14 @@ fun FeedBackUi(
             Icon(
                 painter = painterResource(R.drawable.ic_info),
                 contentDescription = message,
-                tint = defaultColor
+                tint = MovieStreamingTheme.colorScheme.whiteColor
             )
             Spacer(modifier = Modifier.width(6.dp))
             Text(
                 text = message,
                 style = TextStyle(
                     fontFamily = UrbanistFamily,
-                    color = defaultColor,
+                    color = MovieStreamingTheme.colorScheme.whiteColor,
                     letterSpacing = 0.2.sp
                 )
             )

@@ -72,4 +72,9 @@
     <string name="label_input_genre_edit_profile_screen">Gênero</string>
     <string name="label_input_pais_edit_profile_screen">País</string>
     <string name="label_button_update_edit_profile_screen">Atualizar</string>
+
+    <!--    Invalid Input Error-->
+    <string name="error_first_name_invalid">Insira um nome válido</string>
+    <string name="error_surname_invalid">Insira um sobrenome válido</string>
+    <string name="error_phone_invalid">Insira um telefone válido</string>
 </resources>

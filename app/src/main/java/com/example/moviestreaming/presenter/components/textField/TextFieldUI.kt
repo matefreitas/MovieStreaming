@@ -33,6 +33,7 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import br.com.hellodev.moviestreaming.core.helper.MaskVisualTransformation
 import com.example.moviestreaming.R
 import com.example.moviestreaming.presenter.theme.MovieStreamingTheme
 import com.example.moviestreaming.presenter.theme.UrbanistFamily
@@ -44,6 +45,7 @@ fun TextFieldUI(
     placeholder: String = "",
     enabled: Boolean = true,
     isError: Boolean = false,
+    error: String = "",
     singleLine: Boolean = false,
     maxLenght: Int = Int.MAX_VALUE,
     leadingIcon: @Composable (() -> Unit)? = null,
@@ -68,8 +70,8 @@ fun TextFieldUI(
                 value = value,
                 onValueChange = { value ->
                     val filteredValue = when (visualTransformation) {
-                        VisualTransformation.None -> value
-                        else -> value.filter { it.isDigit() }
+                        is MaskVisualTransformation -> value.filter { it.isDigit() }
+                        else -> value
                     }
 
                     if (filteredValue.length <= maxLenght) {
@@ -120,6 +122,21 @@ fun TextFieldUI(
             )
         }
 
+        if (isError) {
+            Text(
+                text = error,
+                modifier = Modifier
+                    .padding(16.dp, top = 4.dp),
+                style = TextStyle(
+                    fontSize = 12.sp,
+                    lineHeight = 19.6.sp,
+                    fontFamily = UrbanistFamily,
+                    color = MovieStreamingTheme.colorScheme.defaultColor,
+                    letterSpacing = 0.2.sp
+                )
+            )
+        }
+
         if (requireKeyboardFocus) {
             LaunchedEffect(Unit) {
                 focusRequester.requestFocus()
@@ -147,6 +164,36 @@ private fun TextFieldUIView() {
                 modifier = Modifier
                     .padding(32.dp),
                 value = textValue,
+                isError = false,
+                placeholder = "Ex: Arley Santana",
+                leadingIcon = {
+                    Icon(
+                        painter = painterResource(id = R.drawable.ic_email),
+                        contentDescription = null
+                    )
+                },
+                tralingIcon = {
+                    IconButton(
+                        onClick = {},
+                        content = {
+                            Icon(
+                                painter = painterResource(id = R.drawable.ic_hide),
+                                contentDescription = null
+                            )
+                        }
+                    )
+                },
+                onValueChange = {
+                    textValue = it
+                }
+            )
+
+            TextFieldUI(
+                modifier = Modifier
+                    .padding(32.dp),
+                value = textValue,
+                isError = true,
+                error = "Teste",
                 placeholder = "Ex: Arley Santana",
                 leadingIcon = {
                     Icon(
