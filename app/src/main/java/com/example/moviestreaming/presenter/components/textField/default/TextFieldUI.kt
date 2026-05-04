@@ -1,4 +1,4 @@
-package com.example.moviestreaming.presenter.components.textField
+package com.example.moviestreaming.presenter.components.textField.default
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border

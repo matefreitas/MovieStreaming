@@ -50,7 +50,7 @@ import com.example.moviestreaming.presenter.components.button.PrimaryButton
 import com.example.moviestreaming.presenter.components.button.SocialButton
 import com.example.moviestreaming.presenter.components.divider.HorizontalDividerWithText
 import com.example.moviestreaming.presenter.components.snackbar.FeedBackUi
-import com.example.moviestreaming.presenter.components.textField.TextFieldUI
+import com.example.moviestreaming.presenter.components.textField.default.TextFieldUI
 import com.example.moviestreaming.presenter.components.topAppBar.TopAppBarUI
 import com.example.moviestreaming.presenter.features.authentication.signup.action.SignupAction
 import com.example.moviestreaming.presenter.features.authentication.signup.state.SignupState

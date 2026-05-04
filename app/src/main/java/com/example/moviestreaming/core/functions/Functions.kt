@@ -9,15 +9,11 @@ fun isValidEmail(email: String): Boolean {
     return email.matches(emailRegex.toRegex())
 }
 
-fun isValidFirstName(name: String): Boolean {
+fun isValidName(name: String): Boolean {
     val regex = "^[a-zA-Z]{3,}$".toRegex()
     return regex.matches(name)
 }
 
-fun isValidSurname(surname: String): Boolean {
-    val regex = "^[a-zA-Z]{3,}$".toRegex()
-    return regex.matches(surname)
-}
 
 fun isValidPhone(phone: String): Boolean {
     val regex = """^\d{2}9\d{8}$""".toRegex()
@@ -29,6 +25,8 @@ fun inputErrorMessage(type: InputType?): Int {
         InputType.FIRST_NAME -> R.string.error_first_name_invalid
         InputType.SURNAME -> R.string.error_surname_invalid
         InputType.PHONE -> R.string.error_phone_invalid
+        InputType.GENRE -> R.string.error_genre_invalid
+        InputType.COUNTRY -> R.string.error_country_invalid
         else -> R.string.error_generic
     }
 }

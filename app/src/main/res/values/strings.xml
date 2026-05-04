@@ -77,4 +77,6 @@
     <string name="error_first_name_invalid">Insira um nome válido</string>
     <string name="error_surname_invalid">Insira um sobrenome válido</string>
     <string name="error_phone_invalid">Insira um telefone válido</string>
+    <string name="error_genre_invalid">Insira um gênero válido</string>
+    <string name="error_country_invalid">Insira um país válido</string>
 </resources>

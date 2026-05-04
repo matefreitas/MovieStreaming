@@ -2,9 +2,7 @@ package com.example.moviestreaming.presenter.features.profile.screen
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
@@ -22,6 +20,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
@@ -31,7 +30,8 @@ import com.example.moviestreaming.core.enums.input.InputType
 import com.example.moviestreaming.core.functions.inputErrorMessage
 import com.example.moviestreaming.presenter.components.button.PrimaryButton
 import com.example.moviestreaming.presenter.components.image.ImageUi
-import com.example.moviestreaming.presenter.components.textField.TextFieldUI
+import com.example.moviestreaming.presenter.components.textField.click.TextFieldClickUI
+import com.example.moviestreaming.presenter.components.textField.default.TextFieldUI
 import com.example.moviestreaming.presenter.components.topAppBar.TopAppBarUI
 import com.example.moviestreaming.presenter.features.profile.action.EditProfileAction
 import com.example.moviestreaming.presenter.features.profile.state.EditProfileState
@@ -93,6 +93,9 @@ fun EditProfileContent(
                 isError = state.inputError == InputType.FIRST_NAME,
                 error = stringResource(inputErrorMessage(InputType.FIRST_NAME)),
                 placeholder = stringResource(id = R.string.label_input_first_name_edit_profile_screen),
+                keyboardOptions = KeyboardOptions(
+                    imeAction = ImeAction.Next
+                ),
                 onValueChange = {
                     action(EditProfileAction.OnNameChanged(it))
                 }
@@ -103,6 +106,9 @@ fun EditProfileContent(
                 isError = state.inputError == InputType.SURNAME,
                 error = stringResource(inputErrorMessage(InputType.SURNAME)),
                 placeholder = stringResource(id = R.string.label_input_surname_edit_profile_screen),
+                keyboardOptions = KeyboardOptions(
+                    imeAction = ImeAction.Next
+                ),
                 onValueChange = {
                     action(EditProfileAction.OnSurnameChanged(it))
                 }
@@ -136,16 +142,22 @@ fun EditProfileContent(
                 }
             )
 
-            TextFieldUI(
-                value = "",
+            TextFieldClickUI(
+                value = state.genre,
                 placeholder = stringResource(id = R.string.label_input_genre_edit_profile_screen),
-                onValueChange = {}
+                painter = painterResource(id = R.drawable.ic_right),
+                isError = state.inputError == InputType.GENRE,
+                error = stringResource(inputErrorMessage(InputType.GENRE)),
+                onClick = {}
             )
 
-            TextFieldUI(
-                value = "",
+            TextFieldClickUI(
+                value = state.country,
                 placeholder = stringResource(id = R.string.label_input_pais_edit_profile_screen),
-                onValueChange = {}
+                painter = painterResource(id = R.drawable.ic_right),
+                isError = state.inputError == InputType.COUNTRY,
+                error = stringResource(inputErrorMessage(InputType.COUNTRY)),
+                onClick = {}
             )
 
             PrimaryButton(

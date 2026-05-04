@@ -3,9 +3,8 @@ package com.example.moviestreaming.presenter.features.profile.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.moviestreaming.core.enums.input.InputType
-import com.example.moviestreaming.core.functions.isValidFirstName
+import com.example.moviestreaming.core.functions.isValidName
 import com.example.moviestreaming.core.functions.isValidPhone
-import com.example.moviestreaming.core.functions.isValidSurname
 import com.example.moviestreaming.presenter.features.profile.action.EditProfileAction
 import com.example.moviestreaming.presenter.features.profile.state.EditProfileState
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -13,7 +12,7 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
-class EditProfileViewModel() : ViewModel() {
+class EditProfileViewModel : ViewModel() {
     private val _state = MutableStateFlow(EditProfileState())
     val state = _state.asStateFlow()
 
@@ -33,6 +32,14 @@ class EditProfileViewModel() : ViewModel() {
 
             is EditProfileAction.OnSurnameChanged -> {
                 onSurnameChanged(surname = action.surname)
+            }
+
+            is EditProfileAction.OnCountryChanged -> {
+                onCountryChanged(country = action.country)
+            }
+
+            is EditProfileAction.OnGenreChanged -> {
+                onGenreChanged(genre = action.genre)
             }
         }
     }
@@ -74,11 +81,31 @@ class EditProfileViewModel() : ViewModel() {
         }
     }
 
+    private fun onGenreChanged(genre: String) {
+        _state.update {
+            it.copy(
+                genre = genre,
+                inputError = null
+            )
+        }
+    }
+
+    private fun onCountryChanged(country: String) {
+        _state.update {
+            it.copy(
+                country = country,
+                inputError = null
+            )
+        }
+    }
+
     private fun inputFeedBackError() {
         val inputError = when {
-            !isValidFirstName(_state.value.name) -> InputType.FIRST_NAME
-            !isValidSurname(_state.value.surname) -> InputType.SURNAME
+            !isValidName(_state.value.name) -> InputType.FIRST_NAME
+            !isValidName(_state.value.surname) -> InputType.SURNAME
             !isValidPhone(_state.value.phone) -> InputType.PHONE
+            _state.value.genre.isEmpty() -> InputType.GENRE
+            _state.value.country.isEmpty() -> InputType.COUNTRY
             else -> null
         }
 
@@ -88,10 +115,12 @@ class EditProfileViewModel() : ViewModel() {
     }
 
     private fun isValidProfile(): Boolean {
-        val name = isValidFirstName(_state.value.name)
-        val surname = isValidSurname(_state.value.name)
+        val name = isValidName(_state.value.name)
+        val surname = isValidName(_state.value.name)
         val phone = isValidPhone(_state.value.phone)
+        val genre = _state.value.genre.isNotEmpty()
+        val country = _state.value.country.isNotEmpty()
 
-        return name && surname && phone
+        return name && surname && phone && genre && country
     }
 }
