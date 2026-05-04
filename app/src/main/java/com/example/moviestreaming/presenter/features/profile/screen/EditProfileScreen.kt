@@ -1,14 +1,20 @@
 package com.example.moviestreaming.presenter.features.profile.screen
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
@@ -41,6 +47,7 @@ import org.koin.androidx.compose.koinViewModel
 
 @Composable
 fun EditProfileScreen(
+    navigateToGenreScreen: () -> Unit,
     onBackPressed: () -> Unit
 ) {
     val viewModel = koinViewModel<EditProfileViewModel>()
@@ -49,6 +56,7 @@ fun EditProfileScreen(
     EditProfileContent(
         state = state,
         action = viewModel::submitAction,
+        navigateToGenreScreen = navigateToGenreScreen,
         onBackPressed = onBackPressed
     )
 }
@@ -57,6 +65,7 @@ fun EditProfileScreen(
 fun EditProfileContent(
     state: EditProfileState,
     action: (EditProfileAction) -> Unit,
+    navigateToGenreScreen: () -> Unit,
     onBackPressed: () -> Unit
 ) {
     Scaffold(
@@ -66,6 +75,24 @@ fun EditProfileContent(
                 onclick = onBackPressed
 
             )
+        },
+        bottomBar = {
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .windowInsetsPadding(WindowInsets.navigationBars)
+                    .background(MovieStreamingTheme.colorScheme.primaryBackgroundColor)
+            ) {
+                HorizontalDivider()
+                PrimaryButton(
+                    modifier = Modifier
+                        .padding(start = 24.dp, end = 24.dp, top = 24.dp, bottom = 32.dp),
+                    text = stringResource(id = R.string.label_button_update_edit_profile_screen),
+                    isLoading = false,
+                    enabled = true,
+                    onclick = { action(EditProfileAction.Update) }
+                )
+            }
         },
         containerColor = MovieStreamingTheme.colorScheme.primaryBackgroundColor,
     ) { paddingValues ->
@@ -148,7 +175,9 @@ fun EditProfileContent(
                 painter = painterResource(id = R.drawable.ic_right),
                 isError = state.inputError == InputType.GENRE,
                 error = stringResource(inputErrorMessage(InputType.GENRE)),
-                onClick = {}
+                onClick = {
+                    navigateToGenreScreen()
+                }
             )
 
             TextFieldClickUI(
@@ -160,12 +189,7 @@ fun EditProfileContent(
                 onClick = {}
             )
 
-            PrimaryButton(
-                text = stringResource(id = R.string.label_button_update_edit_profile_screen),
-                isLoading = false,
-                enabled = true,
-                onclick = { action(EditProfileAction.Update) }
-            )
+
         }
     }
 }
@@ -177,6 +201,7 @@ private fun EditProfileScreenPreview() {
         EditProfileContent(
             state = EditProfileState(),
             action = {},
+            navigateToGenreScreen = {},
             onBackPressed = {}
         )
     }

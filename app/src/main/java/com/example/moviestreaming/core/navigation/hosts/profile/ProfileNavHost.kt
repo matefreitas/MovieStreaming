@@ -5,6 +5,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
 import com.example.moviestreaming.core.navigation.routes.profile.ProfileRoutes
+import com.example.moviestreaming.presenter.features.genre.screen.GenreScreen
 import com.example.moviestreaming.presenter.features.profile.screen.EditProfileScreen
 
 fun NavGraphBuilder.ProfileNavHost(
@@ -15,9 +16,18 @@ fun NavGraphBuilder.ProfileNavHost(
     ) {
         composable<ProfileRoutes.EditProfile> {
             EditProfileScreen(
+                navigateToGenreScreen = {
+                    navHostController.navigate(ProfileRoutes.Genre)
+                },
                 onBackPressed = {
                     navHostController.popBackStack()
                 }
+            )
+        }
+
+        composable<ProfileRoutes.Genre> {
+            GenreScreen(
+                onBackPressed = navHostController::popBackStack
             )
         }
     }
