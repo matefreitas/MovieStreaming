@@ -30,6 +30,9 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.compose.LifecycleEventEffect
+import androidx.lifecycle.compose.LifecycleResumeEffect
 import br.com.hellodev.moviestreaming.core.helper.MaskVisualTransformation
 import com.example.moviestreaming.R
 import com.example.moviestreaming.core.enums.input.InputType
@@ -40,6 +43,7 @@ import com.example.moviestreaming.presenter.components.textField.click.TextField
 import com.example.moviestreaming.presenter.components.textField.default.TextFieldUI
 import com.example.moviestreaming.presenter.components.topAppBar.TopAppBarUI
 import com.example.moviestreaming.presenter.features.profile.action.EditProfileAction
+import com.example.moviestreaming.presenter.features.profile.parameter.EditProfileParameter
 import com.example.moviestreaming.presenter.features.profile.state.EditProfileState
 import com.example.moviestreaming.presenter.features.profile.viewmodel.EditProfileViewModel
 import com.example.moviestreaming.presenter.theme.MovieStreamingTheme
@@ -47,11 +51,18 @@ import org.koin.androidx.compose.koinViewModel
 
 @Composable
 fun EditProfileScreen(
+    parameter: EditProfileParameter? = null,
     navigateToGenreScreen: () -> Unit,
     onBackPressed: () -> Unit
 ) {
     val viewModel = koinViewModel<EditProfileViewModel>()
     val state by viewModel.state.collectAsState()
+
+    LifecycleEventEffect(event = Lifecycle.Event.ON_RESUME) {
+        parameter?.let {
+            viewModel.submitAction(EditProfileAction.SetOnBackResult(it))
+        }
+    }
 
     EditProfileContent(
         state = state,
@@ -170,7 +181,7 @@ fun EditProfileContent(
             )
 
             TextFieldClickUI(
-                value = state.genre,
+                value = state.genre?.name ?: "",
                 placeholder = stringResource(id = R.string.label_input_genre_edit_profile_screen),
                 painter = painterResource(id = R.drawable.ic_right),
                 isError = state.inputError == InputType.GENRE,
@@ -181,7 +192,7 @@ fun EditProfileContent(
             )
 
             TextFieldClickUI(
-                value = state.country,
+                value = state.country?.name ?: "",
                 placeholder = stringResource(id = R.string.label_input_pais_edit_profile_screen),
                 painter = painterResource(id = R.drawable.ic_right),
                 isError = state.inputError == InputType.COUNTRY,

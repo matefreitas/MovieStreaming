@@ -1,6 +1,6 @@
 package com.example.moviestreaming.presenter.features.genre.state
 
-import com.example.moviestreaming.domain.local.model.Genre.Genre
+import com.example.moviestreaming.domain.local.model.genre.Genre
 
 data class GenreState(
     val selectedGenre: Genre? = null,

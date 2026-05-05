@@ -20,7 +20,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
-import com.example.moviestreaming.domain.local.model.Genre.Genre
+import com.example.moviestreaming.domain.local.model.genre.Genre
 import com.example.moviestreaming.presenter.components.button.PrimaryButton
 import com.example.moviestreaming.presenter.components.radio.RadioButtonUi
 import com.example.moviestreaming.presenter.components.topAppBar.TopAppBarUI
@@ -32,6 +32,7 @@ import org.koin.androidx.compose.koinViewModel
 
 @Composable
 fun GenreScreen(
+    onGenreSelected: (Genre?) -> Unit,
     onBackPressed: () -> Unit
 ) {
     val viewModel = koinViewModel<GenreViewModel>()
@@ -40,6 +41,7 @@ fun GenreScreen(
     GenreContent(
         state = state,
         action = viewModel::submitAction,
+        onGenreSelected = onGenreSelected,
         onBackPressed = onBackPressed
     )
 }
@@ -48,6 +50,7 @@ fun GenreScreen(
 private fun GenreContent(
     state: GenreState,
     action: (GenreAction) -> Unit,
+    onGenreSelected: (Genre?) -> Unit,
     onBackPressed: () -> Unit
 ) {
     Scaffold(
@@ -70,7 +73,9 @@ private fun GenreContent(
                         .padding(start = 24.dp, end = 24.dp, top = 24.dp, bottom = 32.dp),
                     text = "Selecionar",
                     enabled = state.selectedGenre != null,
-                    onclick = { }
+                    onclick = {
+                        onGenreSelected(state.selectedGenre)
+                    }
                 )
             }
         },
@@ -106,9 +111,10 @@ private fun GenrePreview() {
     MovieStreamingTheme {
         GenreContent(
             state = GenreState(
-                genres = Genre.genres
+                genres = Genre.items
             ),
             action = {},
+            onGenreSelected = {},
             onBackPressed = {}
         )
     }

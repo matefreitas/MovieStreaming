@@ -2,7 +2,7 @@ package com.example.moviestreaming.presenter.features.genre.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.moviestreaming.domain.local.model.Genre.Genre
+import com.example.moviestreaming.domain.local.model.genre.Genre
 import com.example.moviestreaming.presenter.features.genre.action.GenreAction
 import com.example.moviestreaming.presenter.features.genre.state.GenreState
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -34,7 +34,7 @@ class GenreViewModel : ViewModel() {
     private fun getGenres() {
         viewModelScope.launch {
             _state.value = _state.value.copy(
-                genres = Genre.genres
+                genres = Genre.items
             )
         }
     }

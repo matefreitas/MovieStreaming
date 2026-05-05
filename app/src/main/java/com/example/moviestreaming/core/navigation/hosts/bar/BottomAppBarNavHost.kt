@@ -5,7 +5,7 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import com.example.moviestreaming.core.navigation.hosts.profile.ProfileNavHost
+import com.example.moviestreaming.core.navigation.hosts.profile.profileNavHost
 import com.example.moviestreaming.core.navigation.routes.bar.BottomAppBarRoutes
 import com.example.moviestreaming.core.navigation.routes.profile.ProfileRoutes
 import com.example.moviestreaming.presenter.features.main.account.screen.AccountScreen
@@ -46,6 +46,6 @@ fun BottomAppBarNavHost(
             )
         }
 
-        ProfileNavHost(navHostController = navHostController)
+        profileNavHost(navHostController = navHostController)
     }
 }
