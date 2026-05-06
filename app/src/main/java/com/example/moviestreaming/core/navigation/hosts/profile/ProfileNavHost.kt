@@ -8,6 +8,7 @@ import com.example.moviestreaming.core.constants.NavigationKeys.EDIT_PROFILE_SCR
 import com.example.moviestreaming.core.navigation.extensions.getObject
 import com.example.moviestreaming.core.navigation.extensions.putObject
 import com.example.moviestreaming.core.navigation.routes.profile.ProfileRoutes
+import com.example.moviestreaming.presenter.features.country.screen.CountryScreen
 import com.example.moviestreaming.presenter.features.genre.screen.GenreScreen
 import com.example.moviestreaming.presenter.features.profile.parameter.EditProfileParameter
 import com.example.moviestreaming.presenter.features.profile.screen.EditProfileScreen
@@ -27,6 +28,9 @@ fun NavGraphBuilder.profileNavHost(
                 navigateToGenreScreen = {
                     navHostController.navigate(ProfileRoutes.Genre)
                 },
+                navigateToCountryScreen = {
+                    navHostController.navigate(ProfileRoutes.Country)
+                },
                 onBackPressed = {
                     navHostController.popBackStack()
                 }
@@ -42,6 +46,21 @@ fun NavGraphBuilder.profileNavHost(
                         value = parameter
                     )
                     navHostController.popBackStack()
+                },
+                onBackPressed = {
+                    navHostController.popBackStack()
+                }
+            )
+        }
+
+        composable<ProfileRoutes.Country> {
+            CountryScreen(
+                onCountrySelected = {country ->
+                    val parameter = EditProfileParameter(country = country)
+                    navHostController.previousBackStackEntry?.savedStateHandle?.putObject(
+                        key = EDIT_PROFILE_SCREEN_KEYS,
+                        value = parameter
+                    )
                 },
                 onBackPressed = {
                     navHostController.popBackStack()

@@ -1,4 +1,4 @@
-package com.example.moviestreaming.presenter.features.genre.screen
+package com.example.moviestreaming.presenter.features.country.screen
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -22,43 +22,43 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
 import com.example.moviestreaming.R
-import com.example.moviestreaming.domain.local.model.genre.Genre
+import com.example.moviestreaming.domain.local.model.country.Country
 import com.example.moviestreaming.presenter.components.button.PrimaryButton
 import com.example.moviestreaming.presenter.components.radio.RadioButtonUi
 import com.example.moviestreaming.presenter.components.topAppBar.TopAppBarUI
-import com.example.moviestreaming.presenter.features.genre.action.GenreAction
-import com.example.moviestreaming.presenter.features.genre.state.GenreState
-import com.example.moviestreaming.presenter.features.genre.viewmodel.GenreViewModel
+import com.example.moviestreaming.presenter.features.country.action.CountryAction
+import com.example.moviestreaming.presenter.features.country.state.CountryState
+import com.example.moviestreaming.presenter.features.country.viewmodel.CountryViewModel
 import com.example.moviestreaming.presenter.theme.MovieStreamingTheme
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
-fun GenreScreen(
-    onGenreSelected: (Genre?) -> Unit,
+fun CountryScreen(
+    onCountrySelected: (Country?) -> Unit,
     onBackPressed: () -> Unit
 ) {
-    val viewModel = koinViewModel<GenreViewModel>()
+    val viewModel = koinViewModel<CountryViewModel>()
     val state by viewModel.state.collectAsState()
 
-    GenreContent(
+    CountryContent(
         state = state,
         action = viewModel::submitAction,
-        onGenreSelected = onGenreSelected,
+        onCountrySelected = onCountrySelected,
         onBackPressed = onBackPressed
     )
 }
 
 @Composable
-private fun GenreContent(
-    state: GenreState,
-    action: (GenreAction) -> Unit,
-    onGenreSelected: (Genre?) -> Unit,
+private fun CountryContent(
+    state: CountryState,
+    action: (CountryAction) -> Unit,
+    onCountrySelected: (Country?) -> Unit,
     onBackPressed: () -> Unit
 ) {
     Scaffold(
         topBar = {
             TopAppBarUI(
-                title = stringResource(R.string.label_title_genre_screen),
+                title = stringResource(R.string.label_title_country_screen),
                 onclick = onBackPressed
             )
         },
@@ -74,9 +74,9 @@ private fun GenreContent(
                     modifier = Modifier
                         .padding(start = 24.dp, end = 24.dp, top = 24.dp, bottom = 32.dp),
                     text = stringResource(R.string.label_button_select_genre_screen),
-                    enabled = state.selectedGenre != null,
+                    enabled = state.selectedCountry != null,
                     onclick = {
-                        onGenreSelected(state.selectedGenre)
+                        onCountrySelected(state.selectedCountry)
                     }
                 )
             }
@@ -94,12 +94,12 @@ private fun GenreContent(
                 top = 8.dp
             )
         ) {
-            items(state.genres) { item ->
+            items(state.countries) { item ->
                 RadioButtonUi(
-                    selected = item == state.selectedGenre,
+                    selected = item == state.selectedCountry,
                     text = item.name ?: "",
                     onClick = {
-                        action(GenreAction.OnGenreSelected(item))
+                        action(CountryAction.OnCountrySelected(item))
                     }
                 )
             }
@@ -109,14 +109,14 @@ private fun GenreContent(
 
 @PreviewLightDark
 @Composable
-private fun GenrePreview() {
+private fun CountryPreview() {
     MovieStreamingTheme {
-        GenreContent(
-            state = GenreState(
-                genres = Genre.items
+        CountryContent(
+            state = CountryState(
+                countries = Country.items
             ),
             action = {},
-            onGenreSelected = {},
+            onCountrySelected = {},
             onBackPressed = {}
         )
     }

@@ -79,4 +79,13 @@
     <string name="error_phone_invalid">Insira um telefone válido</string>
     <string name="error_genre_invalid">Insira um gênero válido</string>
     <string name="error_country_invalid">Insira um país válido</string>
+
+    <!--    GenreScreen-->
+    <string name="label_title_genre_screen">Seu gênero</string>
+    <string name="label_button_select_genre_screen">Selecionar</string>
+
+    <!--    CountryScreen-->
+    <string name="label_title_country_screen">Seu país</string>
+    <string name="label_placeholder_country_screen">Ex: Brasil</string>
+    <string name="label_button_select_country_screen">Selecionar</string>
 </resources>

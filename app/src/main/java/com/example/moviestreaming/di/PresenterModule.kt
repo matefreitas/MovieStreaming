@@ -2,6 +2,7 @@ package com.example.moviestreaming.di
 
 import com.example.moviestreaming.presenter.features.authentication.login.viewmodel.LoginViewModel
 import com.example.moviestreaming.presenter.features.authentication.signup.viewmodel.SignupViewModel
+import com.example.moviestreaming.presenter.features.country.viewmodel.CountryViewModel
 import com.example.moviestreaming.presenter.features.genre.viewmodel.GenreViewModel
 import com.example.moviestreaming.presenter.features.main.account.viewmodel.AccountViewModel
 import com.example.moviestreaming.presenter.features.main.download.viewmodel.DownloadViewModel
@@ -26,4 +27,5 @@ val presenterModule = module {
     viewModelOf(::AccountViewModel)
     viewModelOf(::EditProfileViewModel)
     viewModelOf(::GenreViewModel)
+    viewModelOf(::CountryViewModel)
 }
