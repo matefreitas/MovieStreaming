@@ -4,5 +4,7 @@ import com.example.moviestreaming.domain.local.model.country.Country
 
 data class CountryState(
     val selectedCountry: Country? = null,
-    val countries: List<Country> = emptyList()
+    val countries: List<Country> = emptyList(),
+    val countriesFiltered: List<Country> = emptyList(),
+    val searchQuery: String = ""
 )
